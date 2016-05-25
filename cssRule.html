@@ -6,15 +6,15 @@
     <link rel="stylesheet" href="css/common_lib.css">
 </head>
 <style>
-    #classRulesDiv div{
+    #classRulesDiv div {
         margin-top: 15px;
     }
 
-    .textArea{
+    .textArea {
         font-size: 18px;
     }
 
-    #textArea{
+    #textArea {
         font-size: 20px;
     }
 </style>
@@ -24,7 +24,9 @@
     <input type="file" id="file" value="选择css文件">
 </div>
 <div class="m_20px_a w_40">
-    <button class="w_100 c_p" style="height: 20px;line-height: 20px" value="显示需要复制的文本" onclick="showTextArea()">显示需要复制的文本</button>
+    <button class="w_100 c_p" style="height: 20px;line-height: 20px" value="显示需要复制的文本" onclick="showTextArea()">
+        显示需要复制的文本
+    </button>
 </div>
 <div id="textAreaDiv" class="d_n m_20px_a w_90">
     <span class="w_100 textArea" id="textArea" style="word-wrap:break-word;"></span>
@@ -35,39 +37,38 @@
 </body>
 <script>
 
-    var is_show=false;
+    var is_show = false;
 
-    function showTextArea(){
+    function showTextArea() {
 
-        is_show=!is_show;
+        is_show = !is_show;
 
-        if(is_show){
+        if (is_show) {
 
-            document.getElementById("textArea").innerText=classes_string;
+            document.getElementById("textArea").innerText = classes_string;
 
-            document.getElementById("textAreaDiv").style.display="block";
+            document.getElementById("textAreaDiv").style.display = "block";
 
-        }else{
-            document.getElementById("textAreaDiv").style.display="none";
+        } else {
+            document.getElementById("textAreaDiv").style.display = "none";
         }
     }
 
-    document.getElementById("file").addEventListener("change",fileSelected,false);
+    document.getElementById("file").addEventListener("change", fileSelected, false);
 
     var cssRule;
 
-    function fileSelected(event){
+    function fileSelected(event) {
 
-        var file=event.target;
+        var file = event.target;
 
-        if (file.files && file.files[0])
-        {
+        if (file.files && file.files[0]) {
 
             var reader = new FileReader();
 
-            reader.onload = function(evt){
+            reader.onload = function (evt) {
 
-                cssRule=evt.target.result;
+                cssRule = evt.target.result;
 
                 parseCss();
 
@@ -78,21 +79,21 @@
         }
     }
 
-    var classes={};
+    var classes = {};
 
-    var classes_string="";
+    var classes_string = "";
 
-    function parseCss(){
+    function parseCss() {
 
-        cssRule=cssRule.replace(/ /g,"");
+        cssRule = cssRule.replace(/ /g, "");
 
-        cssRule=cssRule.replace(/[ ]/g,"");
+        cssRule = cssRule.replace(/[ ]/g, "");
 
-        cssRule=cssRule.replace(/[\r\n]/g,"");
+        cssRule = cssRule.replace(/[\r\n]/g, "");
 
-        var class_arr=cssRule.split("}");
+        var class_arr = cssRule.split("}");
 
-        for(var i=0;i<class_arr.length;i++) {
+        for (var i = 0; i < class_arr.length; i++) {
 
             var class_string = class_arr[i];
 
@@ -108,11 +109,11 @@
 
             classes[class_name] = class_content;
 
-            var str=class_name+"{"+class_content+"}";
+            var str = class_name + "{" + class_content + "}";
 
-            if(class_content&&class_name){
+            if (class_content && class_name) {
 
-                classes_string+=str;
+                classes_string += str;
 
                 initClassDiv(str);
 
@@ -120,16 +121,16 @@
 
         }
 
-        console.log("classes_string:",classes_string);
+        console.log("classes_string:", classes_string);
     }
 
-    var classRulesDiv=document.getElementById("classRulesDiv");
+    var classRulesDiv = document.getElementById("classRulesDiv");
 
-    function initClassDiv(str){
+    function initClassDiv(str) {
 
-        var div=document.createElement("div");
+        var div = document.createElement("div");
 
-        div.innerHTML=str;
+        div.innerHTML = str;
 
         classRulesDiv.appendChild(div);
 

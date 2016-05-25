@@ -96,7 +96,10 @@
         <ul id="show_ul">
             <li><img src="images/s0.jpg"><span
                     style="position: absolute;left: 20px;top: 20px;z-index: 99;font-size:30px;color: #ff0000">0</span>
-                <div class="scale_div" style="border:3px solid #18c6eb;display:none;position: absolute;z-index: 99;width: 100%;height: 100%"><img style="width: 100%" src="images/s0.jpg"></div>
+
+                <div class="scale_div"
+                     style="border:3px solid #18c6eb;display:none;position: absolute;z-index: 99;width: 100%;height: 100%">
+                    <img style="width: 100%" src="images/s0.jpg"></div>
             </li>
             <li><img src="images/s1.jpg"><span
                     style="position: absolute;left: 20px;top: 20px;z-index: 99;font-size:30px;color: #ff0000">1</span>
@@ -455,17 +458,17 @@ function initShowIndex() {
 
 initShowIndex();
 
-function zoom(index){
+function zoom(index) {
 
-    var selected_index=index+1;
+    var selected_index = index + 1;
 
-    var div="#show_ul li:nth-child("+selected_index+") div";
+    var div = "#show_ul li:nth-child(" + selected_index + ") div";
 
-    var img="#show_ul li:nth-child("+selected_index+") img";
+    var img = "#show_ul li:nth-child(" + selected_index + ") img";
 
-    var w=$(img).width();
+    var w = $(img).width();
 
-    var h=$(img).height();
+    var h = $(img).height();
 
     $(div).width(w);
 
@@ -473,7 +476,7 @@ function zoom(index){
 
     $(div).show();
 
-    $(div).animate({left:-10,top:-10,width:w+20,height:h+20});
+    $(div).animate({left: -10, top: -10, width: w + 20, height: h + 20});
 
 }
 

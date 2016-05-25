@@ -5,13 +5,13 @@
     <title>简单弹幕效果</title>
     <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
     <style>
-        html,body{
+        html, body {
             width: 100%;
             margin: 0;
             padding: 0;
         }
 
-        #pop_kv{
+        #pop_kv {
             width: 90%;
             margin: 30px auto;
             background-color: #e7fcff;
@@ -19,7 +19,6 @@
             position: relative;
 
             overflow: hidden;
-
 
         }
     </style>
@@ -29,28 +28,28 @@
 
 </div>
 <script>
-    var pop_kv=$("#pop_kv")[0];
+    var pop_kv = $("#pop_kv")[0];
 
-    var pop_width=$("#pop_kv").width();
+    var pop_width = $("#pop_kv").width();
 
-    var min_y=50;
+    var min_y = 50;
 
-    var max_y=350;
+    var max_y = 350;
 
-    var move_pops=[];
+    var move_pops = [];
 
-    var create_delay=1000;
+    var create_delay = 1000;
 
-    var prev_time=0;
+    var prev_time = 0;
 
-    var pops=["0.png","1.png","2.png","3.png","4.png","5.png","6.png","7.png","8.png","9.png","10.png","11.png","12.png","13.png","14.png"]
+    var pops = ["0.png", "1.png", "2.png", "3.png", "4.png", "5.png", "6.png", "7.png", "8.png", "9.png", "10.png", "11.png", "12.png", "13.png", "14.png"]
 
-    var slogan="slogan.png";
+    var slogan = "slogan.png";
 
-    var last_top=0;
+    var last_top = 0;
 
     //随机打乱数组顺序
-    function randomIndex(){
+    function randomIndex() {
 
         var lg = pops.length;
 
@@ -71,37 +70,37 @@
 
     randomIndex();
 
-    var id_num=0;
+    var id_num = 0;
 
-    function createPop(index){
+    function createPop(index) {
 
-        var left=pop_width;
+        var left = pop_width;
 
-        var top=min_y+Math.random()*250;
+        var top = min_y + Math.random() * 250;
 
-        while(Math.abs(top-last_top)<50){
+        while (Math.abs(top - last_top) < 50) {
 
-            top=min_y+Math.random()*250;
+            top = min_y + Math.random() * 250;
 
         }
 
-        last_top=top;
+        last_top = top;
 
-        var img=document.createElement("img");
+        var img = document.createElement("img");
 
         id_num++;
 
-        var src="pop_img/"+pops[index];
+        var src = "pop_img/" + pops[index];
 
-        img.id="img"+id_num;
+        img.id = "img" + id_num;
 
-        $(img).attr("src",src);
+        $(img).attr("src", src);
 
-        $(img).css({"left":left,"top":top,"position":"absolute"});
+        $(img).css({"left": left, "top": top, "position": "absolute"});
 
-        var speed=3+Math.random()*3;
+        var speed = 3 + Math.random() * 3;
 
-        var pop={"img":img,"speed":speed};
+        var pop = {"img": img, "speed": speed};
 
         move_pops.push(pop);
 
@@ -109,17 +108,17 @@
 
     }
 
-    var current_index=0;
+    var current_index = 0;
 
-    function loop(){
+    function loop() {
 
-        var current_time=new Date().getTime();
+        var current_time = new Date().getTime();
 
-        if(current_time-prev_time>create_delay){
+        if (current_time - prev_time > create_delay) {
 
-            if(current_index>14){
+            if (current_index > 14) {
 
-                current_index=0;
+                current_index = 0;
 
             }
 
@@ -127,34 +126,34 @@
 
             current_index++;
 
-            prev_time=current_time;
+            prev_time = current_time;
         }
 
 
         movePops();
 
-        setTimeout(loop,33);
+        setTimeout(loop, 33);
     }
 
     loop();
 
-    function movePops(){
+    function movePops() {
 
-        for(var i=0;i<move_pops.length;i++){
+        for (var i = 0; i < move_pops.length; i++) {
 
-            var left=$(move_pops[i].img).position().left;
+            var left = $(move_pops[i].img).position().left;
 
-            left-=move_pops[i].speed;
+            left -= move_pops[i].speed;
 
-            if(left<-500){
+            if (left < -500) {
 
-                var pop=move_pops.splice(i,1);
+                var pop = move_pops.splice(i, 1);
 
                 pop_kv.removeChild(pop[0].img);
 
-            }else{
+            } else {
 
-                $(move_pops[i].img).css("left",left);
+                $(move_pops[i].img).css("left", left);
 
             }
 
