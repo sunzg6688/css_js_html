@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>不一样的旅途，不一样的PAY</title>
+    <style>
+        html,body{
+            margin: 0;
+            padding: 0;
+        }
+
+        .f_l {
+            float: left;
+        }
+
+        .f_r {
+            float: right;
+        }
+
+        .c_b {
+            clear: both;
+        }
+
+        .o_h {
+            overflow: hidden;
+        }
+
+        .p_r {
+            position: relative;
+        }
+
+        .p_a {
+            position: absolute;
+        }
+
+        .p_f {
+            position: fixed;
+        }
+
+        .c_p {
+            cursor: pointer;
+        }
+
+        .t-a_c {
+            text-align: center;
+        }
+
+        .d_n {
+            display: none;
+        }
+
+        /*居中显示*/
+        .m_0px_a {
+            margin: 0px auto;
+        }
+
+        .m_5px_a {
+            margin: 5px auto;
+        }
+
+        .m_10px_a {
+            margin: 10px auto;
+        }
+
+        .m_15px_a {
+            margin: 15px auto;
+        }
+
+        .m_20px_a {
+            margin: 20px auto;
+        }
+
+        .m_25px_a {
+            margin: 25px auto;
+        }
+
+        .m_30px_a {
+            margin: 30px auto;
+        }
+
+        .w_100{width:100%}
+
+        body{
+            width: 100%;
+            background-color: #cae8f4;
+            font-family: 'microsoft yahei';
+            min-width: 1000px;
+        }
+
+        .content{
+            width: 1000px;
+            margin: 0px auto;
+            position: relative;
+        }
+
+        .search_div{
+            width: 100%;
+            overflow: hidden;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        .search{
+            float: right;
+            width: 208px;
+            height: 38px;
+            border: solid 1px #bfc7ce;
+            margin-top: 16px;
+            margin-right: 220px;
+        }
+
+        .search span{
+            display: inline-block;
+            float: left;
+        }
+
+        .search span input{
+            width: 151px;
+            height: 28px;
+            border: 0;
+            padding: 5px 5px 5px 10px;
+            color: #b7bbc0;
+            line-height: 28px;
+        }
+
+        .search span a{
+            width: 42px;
+            height: 38px;
+            background: url(images/search_icon.png) no-repeat;
+            background-position: 50%;
+            display: block;
+            text-decoration: none;
+            background-color: #fff;
+        }
+
+        .nav_div{
+            position: relative;
+            /*height: 630px;*/
+        }
+
+        .nav_bg{
+            /*position: absolute;*/
+            /*top:0;*/
+            /*left: 0;*/
+            /*z-index: 1;*/
+
+        }
+
+        .cloud{
+            position: absolute;
+            right: -180px;
+            bottom: 0;
+            display: none;
+
+        }
+
+        .pay_tyg{
+            background-color: #ffffff;
+
+        }
+
+        .tyg_content{
+            width: 1000px;
+            margin: 30px auto;
+        }
+
+        .tyg_title{
+            color: #23435f;
+            padding-top: 45px;
+            padding-left: 22px;
+        }
+
+        .f-s_30{
+            font-size: 30px;
+            line-height: 50px;
+            color: #738291;
+        }
+
+        .f-s_50{
+            font-size: 50px;
+            line-height: 80px;
+        }
+
+        .person_div{
+            margin-top: 40px;
+            margin-left: 22px;
+            overflow: hidden;
+            padding-bottom: 25px;
+
+        }
+        .person {
+            width: 25%;
+            float: left;
+            padding: 15px 0px;
+        }
+        .person_name{
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+        .person_desc{
+            margin-top: 10px;
+            margin-bottom: 10px;
+            height: 40px;
+        }
+        .person_btn img{
+            cursor: pointer;
+        }
+        .f-s_18_b{
+            font-size: 19px;
+            font-weight: bold;
+        }
+        .f-s_16{
+            font-size: 17px;
+        }
+        .f_s_14{
+            font-size: 15px;
+            color: #555;
+        }
+
+        .m_28px{
+            margin-top: 28px;
+        }
+
+        .pay_hdgz{
+            margin-top: 30px;
+            background-color: #ffffff;
+        }
+        .pay_hdsj img{
+            width: 100%;
+        }
+        .hdgz_desc{
+            width: 950px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        .gz_left{
+            float: left;
+            width: 173px;
+            margin-left: 130px;
+        }
+        .gz_right{
+            float: left;
+            width: 550px;
+            margin-top: 60px;
+            margin-left: 95px;
+        }
+
+        .gz_title{
+            color: #559cb8;
+            font-size: 26px;
+            font-weight: bold;
+            line-height: 50px;
+        }
+        .gz_desc{
+            color: #888;
+            font-size: 20px;
+            line-height: 30px;
+        }
+
+        .pay_ljgd{
+            width: 1000px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            overflow: hidden;
+            padding-bottom: 30px;
+
+        }
+        .ljgd_btn{
+            float: right;
+            cursor: pointer;
+            margin-right: 110px;
+            width: 160px;
+        }
+        .fkzd{
+            margin-top: 30px;
+            position: relative;
+        }
+
+        .fkzd_btn{
+            position: absolute;
+            z-index: 1;
+            top: 60px;
+            left: 720px;
+            cursor: pointer;
+            width: 160px;
+        }
+
+    .y_btn{
+        float: left;
+        background: url("images/y_btn_bg.jpg") no-repeat;
+        line-height: 77px;
+        text-align: center;
+        width: 77px;
+        margin-right: 2px;
+        font-size: 14px;
+        color: #555555;
+    }
+    .f-s_50_b{
+        font-size: 50px;
+        font-weight: bold;
+    }
+
+    .y_btn_dz{
+        float: left;
+        background: url("images/y_btn_bg.jpg") no-repeat;
+        width: 77px;
+        margin-right: 2px;
+        font-size: 14px;
+        color: #555555;
+        text-align: center;
+        padding-top: 16px;
+        padding-bottom: 18px;
+    }
+    .zdspan{
+        line-height: 22px;
+        width: 77px;
+        text-align: center;
+    }
+    </style>
+</head>
+<body>
+<div class="content">
+    <div class="search_div">
+        <p class="search">
+            <span>
+                <input type="text" id="allsearch" onkeydown="allsearch(event)" value="Samsung Pay" onfocus="this.value=''" onblur="if(this.value==''){this.value='Samsung Pay'}">
+            </span>
+            <span><a class="d_p_bk c_p" style="cursor: pointer" onclick="fuzhi()"></a></span>
+        </p>
+    </div>
+    <div class="nav_div">
+        <img class="nav_bg w_100" src="images/nav_kv.jpg">
+        <!--<img class="cloud" src="images/nav_cloud_03.jpg">-->
+    </div>
+
+    <div class="pay_tyg w_100">
+        <div class="tyg_content">
+            <div class="tyg_title">
+                <span class="f-s_50">快来为你喜欢的体验官投出</span><span class="f-s_50_b">宝贵的一票</span><br>
+                <span class="f-s_50">赢取三星精美礼品！</span><br>
+                <span class="f-s_30">不一样的旅行 · 不一样的 Pay</span><br>
+                <span class="f-s_50">Samsung Pay 首席体验官介绍</span>
+            </div>
+            <div class="person_div">
+                <div class="person">
+                    <div class="person_head">
+                        <img onclick="openTYG(0)" src="images/lxy.jpg">
+                    </div>
+                    <div class="person_fgx">
+                        <img src="images/txfgx_20.jpg">
+                    </div>
+                    <div class="person_name f-s_18_b">
+                        罗晓韵
+                    </div>
+                    <div class="person_title f-s_16">摄影达人</div>
+                    <div class="person_desc f_s_14">
+                        <span>知名摄影师、行摄作家</span><br>
+                        <span>花图摄影公司创办人</span>
+                    </div>
+                    <div class="person_btn">
+                        <div class="y_btn_dz">
+                            <span class="zdspan">点赞</span><br>
+                            <span class="zdspan">55</span>
+                        </div>
+                        <div class="y_btn">
+                            <span>分享</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="person">
+                    <div class="person_head">
+                        <img onclick="openTYG(1)" src="images/mmx.jpg">
+                    </div>
+                    <div class="person_fgx">
+                        <img src="images/txfgx_20.jpg">
+                    </div>
+                    <div class="person_name f-s_18_b">
+                        毛毛迅
+                    </div>
+                    <div class="person_title f-s_16">中国时尚专家</div>
+                    <div class="person_desc f_s_14">
+                        <span>前男士杂志《时尚健康》时尚总监</span>
+                    </div>
+                    <div class="person_btn">
+                        <a><img src="images/dz_btn.jpg"></a>
+                        <a><img src="images/fx_btn.jpg"></a>
+                    </div>
+                </div>
+                <div class="person">
+                    <div class="person_head">
+                        <img onclick="openTYG(2)" src="images/cxsbx.jpg">
+                    </div>
+                    <div class="person_fgx">
+                        <img src="images/txfgx_20.jpg">
+                    </div>
+                    <div class="person_name f-s_18_b">
+                        陈潇睡不醒
+                    </div>
+                    <div class="person_title f-s_16">平面模特</div>
+                    <div class="person_desc f_s_14">
+                        <span>平面模特、网游广告</span><br>
+                        <span>《桌游志》covergirl等</span>
+                    </div>
+                    <div class="person_btn">
+                        <a><img src="images/dz_btn.jpg"></a>
+                        <a><img src="images/fx_btn.jpg"></a>
+                    </div>
+                </div>
+                <div class="person">
+                    <div class="person_head">
+                        <img onclick="openTYG(3)" src="images/wzq.jpg">
+                    </div>
+                    <div class="person_fgx">
+                        <img src="images/txfgx_20.jpg">
+                    </div>
+                    <div class="person_name f-s_18_b">
+                        王子强
+                    </div>
+                    <div class="person_title f-s_16">美食旅行家</div>
+                    <div class="person_desc f_s_14">
+                        <span>著名摄影师 美食旅游家、</span><br>
+                        <span>主持人、汽车评论员</span>
+                    </div>
+                    <div class="person_btn">
+                        <a><img src="images/dz_btn.jpg"></a>
+                        <a><img src="images/fx_btn.jpg"></a>
+                    </div>
+                </div>
+                <div class="person">
+                    <div class="person_head">
+                        <img onclick="openTYG(4)" src="images/xz40g.jpg">
+                    </div>
+                    <div class="person_fgx">
+                        <img src="images/txfgx_20.jpg">
+                    </div>
+                    <div class="person_name f-s_18_b">
+                        行走40国
+                    </div>
+                    <div class="person_title f-s_16">当代徐霞客</div>
+                    <div class="person_desc f_s_14">
+                        <span>旅行家、作家、</span><br>
+                        <span>中国网民节形象大使</span>
+                    </div>
+                    <div class="person_btn">
+                        <a><img src="images/dz_btn.jpg"></a>
+                        <a><img src="images/fx_btn.jpg"></a>
+                    </div>
+                </div>
+                <div class="person">
+                    <div class="person_head">
+                        <img onclick="openTYG(5)" src="images/xm.jpg">
+                    </div>
+                    <div class="person_fgx">
+                        <img src="images/txfgx_20.jpg">
+                    </div>
+                    <div class="person_name f-s_18_b">
+                        徐苗
+                    </div>
+                    <div class="person_title f-s_16">时尚撰稿人</div>
+                    <div class="person_desc f_s_14">
+                        <span>平面模特、微博时尚达人、</span><br>
+                        <span>时尚撰稿人</span>
+                    </div>
+                    <div class="person_btn">
+                        <a><img src="images/dz_btn.jpg"></a>
+                        <a><img src="images/fx_btn.jpg"></a>
+                    </div>
+                </div>
+                <div class="person">
+                    <div class="person_head">
+                        <img onclick="openTYG(6)" src="images/fyxxf.jpg">
+                    </div>
+                    <div class="person_fgx">
+                        <img src="images/txfgx_20.jpg">
+                    </div>
+                    <div class="person_name f-s_18_b">
+                        飞鱼秀-小飞
+                    </div>
+                    <div class="person_title f-s_16">最派音乐主播</div>
+                    <div class="person_desc f_s_14">
+                        <span>著名飞鱼秀主持人、音乐人</span>
+                        <br>
+                        <span></span>
+                    </div>
+                    <div class="person_btn">
+                        <a><img src="images/dz_btn.jpg"></a>
+                        <a><img src="images/fx_btn.jpg"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+
+    <div class="pay_hdgz w_100">
+        <div class="pay_hdsj">
+            <img src="images/pay_hdsj.jpg">
+        </div>
+        <div class="hdgz_desc">
+            <div class="gz_left"><img class="w_100" src="images/tyg_gz_45.jpg"></div>
+            <div class="gz_right">
+                <span class="gz_title">大咖们要丢掉钱包，带着S PAY去生存挑战？</span><br>
+                <span class="gz_desc">不同风格的大咖，各具特色的城市，他们的衣食住行、他</span><br>
+                <span class="gz_desc">们的行摄观点和时尚角度，体验Samsung Pay支付的“不</span><br>
+                <span class="gz_desc">一样魅力”。</span><br>
+                <br>
+                <br>
+                <br>
+                <span class="gz_desc">赶快为你喜爱的大咖点赞，让他们走过“你”的城市，与</span><br>
+                <span class="gz_desc">风景同框，带“你”神游，发美图、说故事，让“你”与</span><br>
+                <span class="gz_desc">与心目中的大咖来次“不一样”的灵魂交流。</span><br>
+            </div>
+        </div>
+        <div class="pay_ljgd">
+            <a><img onclick="openGZ()" class="ljgd_btn" src="images/ljgd_btn.jpg"></a>
+        </div>
+    </div>
+    <div class="fkzd">
+        <img class="w_100" src="images/fkzd_bg_52.jpg">
+        <a><img class="fkzd_btn" src="images/ljgd_60.png"></a>
+    </div>
+</div>
+
+<style>
+    #gz_pop{
+        width: 670px;
+        top: 10px;
+        left: 385px;
+        position: fixed;
+        display: none;
+        z-index: 2;
+        line-height: 0;
+
+    }
+    .span_div{
+        position: absolute;
+        z-index: 3;
+        width: 580px;
+        top: 250px;
+        left: 50px;
+        height: 290px;
+        overflow-y: scroll;
+    }
+    .f-s_30_b{
+        font-size: 28px;
+        font-weight: bold;
+        line-height: 40px;
+        color: #559cb8;
+    }
+    .f-s_16_p{
+        font-size: 14px;
+        line-height: 25px;
+        color: #555555;
+    }
+    .f-s_16_l{
+        font-size: 14px;
+        line-height: 25px;
+        color: #559cb8;;
+    }
+    .close_btn{
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        cursor: pointer;
+
+    }
+</style>
+<script>
+    function closeGZ(){
+        var pop=document.getElementById("gz_pop");
+        pop.style.display="none";
+    }
+
+    function openGZ(){
+        var pop=document.getElementById("gz_pop");
+        pop.style.display="block";
+        var w=(window.innerWidth-670)/2;
+        pop.style.left=w+"px"
+    }
+</script>
+<div id="gz_pop">
+    <img src="images/gz_bg.jpg">
+    <div class="span_div">
+        <span class="f-s_30_b">大咖们要丢掉钱包，带着S PAY去生存挑战？</span><br>
+        <br>
+        <span class="f-s_16_p">不同风格的大咖，各具特色的城市，他们的衣食住行、他们的行摄观点和时尚角度，体验Samsung Pay支付的“不一样魅力”。赶快为你喜爱的大咖点赞，让他们走过“你”的城市，与风景同框，带“你”神游，发美图、说故事，让“你”与心目中的大咖来次“不一样”的灵魂交流。</span>
+        <br>
+        <span class="f-s_16_p">即日起至2016年5月24日可为你喜欢的大咖投点赞并分享，我们将依据票数高低决选出“3位”支持率最高的大咖，完成指定旅游路线的生存挑战活动；盖乐世社区将从支持3位胜出大咖的网友中，系统随机抽选6名获奖者，依次获得</span>
+        <br>
+        <span class="f-s_16_l">一等奖（1名）奖品三星galaxy C手机一部；二等奖（2名）奖品京东购物卡30元一张；三等奖（3名）星巴克咖啡券33元一张；</span>
+        <br>
+        <br>
+        <span class="f-s_16_p">本次活动将在2016年5月25日公布胜出的3位大咖名单，以及为他们“点赞+分享”的获奖会员名单。活动详情请及时查看盖乐世社区公告、官方微信、微博等内容更新。</span>
+    </div>
+    <img onclick="closeGZ()" class="close_btn" src="images/close_btn.png">
+    <img src="images/gz_bg_bottom.jpg">
+</div>
+<style>
+    .person_head{
+        cursor: pointer;
+    }
+    #tyg_pop{
+        width: 670px;
+        top: 30px;
+        left: 385px;
+        position: fixed;
+        display: none;
+        z-index: 2;
+
+    }
+    .tyg_left1{
+        width: 125px;
+        position: absolute;
+        top: 300px;
+        left: 50px;
+    }
+    .tyg_right1{
+        width: 425px;
+        position: absolute;
+        top: 300px;
+        left: 200px;
+    }
+    #tyg_head_title{
+        background-color: #1751a2;
+        color: #ffffff;
+        text-align: center;
+        width: 125px;
+        display: block;
+        line-height: 25px;
+        font-size: 18px;
+    }
+    #tyg_name1{
+        font-size: 18px;
+        line-height: 25px;
+        color: #1751a2;
+        font-weight: bold;
+    }
+    #tyg_name2{
+        font-size: 18px;
+        line-height: 25px;
+        color: #000;
+        font-weight: bold;
+    }
+    #tyg_title{
+        font-size: 16px;
+        line-height: 25px;
+        color: #000;
+        font-weight: bold;
+    }
+    #tyg_desc{
+        font-size: 16px;
+        line-height: 25px;
+        color: #555;
+        font-weight: bold;
+    }
+</style>
+<script>
+    function closeTYG(){
+        var pop=document.getElementById("tyg_pop");
+        pop.style.display="none";
+    }
+
+    function openTYG(index){
+        var pop=document.getElementById("tyg_pop");
+        pop.style.display="block";
+
+        var img=document.getElementById("tyg_head_icon");
+        img.src=persons[index].src;
+
+        var tyg_name2=document.getElementById("tyg_name2");
+        tyg_name2.innerText="-"+persons[index].title;
+
+        var tyg_name1=document.getElementById("tyg_name1");
+        tyg_name1.innerText=persons[index].name;
+
+        var tyg_title=document.getElementById("tyg_title");
+        tyg_title.innerText=persons[index].title_desc;
+
+        var tyg_desc=document.getElementById("tyg_desc");
+        tyg_desc.innerText=persons[index].desc;
+
+    }
+
+    var persons=[
+        {
+            "name":"罗晓韵",
+            "src":"images/lxy.jpg",
+            "title":"行摄达人",
+            "title_desc":"知名摄影师、行摄作家、花图摄影公司创办人",
+            "desc":"重庆：味蕾山城，风情秀美。罗晓韵带您吃遍八一路，游看长江水；玩到武隆，逛到大都会。遇上风情，心中盛景。"
+        },
+        {
+            "name":"毛毛迅",
+            "src":"images/mmx.jpg",
+            "title":"中国时尚专家",
+            "title_desc":"前男士杂志《时尚健康》时尚总监",
+            "desc":"上海：时尚之城，东方之珠。毛毛迅带您领略上海怀旧与前卫的时尚碰撞，买在城隍庙，逛到外滩吃夜宵，悠哉黄浦江，闲情田子坊。重温上海滩，不一样时尚。"
+        },
+        {
+            "name":"陈潇睡不醒",
+            "src":"images/cxsbx.jpg",
+            "title":"平面模特",
+            "title_desc":"平面模特、网游广告《桌游志》covergirl等",
+            "desc":"西递宏村：水墨宏村，印象徽州。陈潇带您逛南湖，看书院，吃小吃，故事随刻写意，感受徽派风味。"
+        },
+        {
+            "name":"王子强",
+            "src":"images/wzq.jpg",
+            "title":"美食旅行家",
+            "title_desc":"著名摄影师 美食旅游家、主持人、汽车评论员",
+            "desc":"杭州：人间天堂，诗情画意。西湖十景凭吊古意，王子强带您吃出东坡，来只叫花鸡。逛逛吴山夜市，品尝梅家坞茶，体验Spay。"
+        },
+        {
+            "name":"行走40国",
+            "src":"images/xz40g.jpg",
+            "title":"当代徐霞客",
+            "title_desc":"旅行家、作家、中国网民节形象大使",
+            "desc":"鼓浪屿：文青小岛，最美城区。行走40国带您欣赏别样建筑，品尝味美海鲜，逛遍特色小店，玩味一派。"
+        },
+        {
+            "name":"徐苗",
+            "src":"images/xm.jpg",
+            "title":"时尚撰稿人",
+            "title_desc":"平面模特、微博时尚达人、时尚撰稿人",
+            "desc":"西安：秦汉梦都，芙蓉大唐。徐苗带您走进华清池，吃遍西安美食，逛逛大唐不夜城，尽情刷pay，尽情优美。"
+        },
+        {
+            "name":"飞鱼秀-小飞",
+            "src":"images/fyxxf.jpg",
+            "title":"最派音乐主播",
+            "title_desc":"著名飞鱼秀主持人、音乐人",
+            "desc":"大理&双廊：诗若洱海，歌如丽江。小飞带您租个小电摩邂逅洱海，点杯红酒邂逅丽江。在这里惬意，在这里迷离。"
+        }
+       ]
+</script>
+<div id="tyg_pop">
+    <img src="images/tyg_bg.jpg">
+    <div class="tyg_left1">
+        <img id="tyg_head_icon" class="w_100" src="images/xz40g.jpg">
+        <br>
+        <br>
+        <span id="tyg_head_title">旅行路线</span>
+    </div>
+    <div class="tyg_right1">
+        <span id="tyg_name1">行走40国</span><span id="tyg_name2">－当代徐霞客</span>
+        <br>
+        <span id="tyg_title">旅行家、作家、中国网民形象大使</span>
+        <br>
+        <br>
+        <div style="height: 1px;width: 100%;background-color:#1751a2 "></div>
+        <br>
+        <span id="tyg_desc">鼓浪屿：文青小岛，最美城区。行走40国带您欣赏别样建筑，品尝味美海鲜，逛遍特色小店，玩味一派。</span>
+    </div>
+    <img onclick="closeTYG()" class="close_btn" src="images/close_btn.png">
+</div>
+</body>
+</html>
