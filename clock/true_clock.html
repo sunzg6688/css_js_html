@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <title>canvas简单实现时钟效果</title>
+    <style>
+        html, body {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+
+            background-color: #000000;
+        }
+
+        div {
+            width: 362px;
+            margin: auto;
+        }
+
+        span {
+            line-height: 60px;
+            text-align: center;
+            font-size: 24px;
+            display: block;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<div>
+    <canvas id="myCanvas" width="362px" height="362px"/>
+</div>
+<div>
+    <span id="timerSpan"></span>
+</div>
+</canvas>
+
+<script>
+    var c = document.getElementById("myCanvas");
+
+    var ctx = c.getContext("2d");
+
+    var span = document.getElementById("timerSpan");
+
+    var hour;
+
+    var minute;
+
+    var second;
+
+    var hour_position = {"x": 0, "y": 0, "radius": 80, "angle": 30, "num": 0};
+
+    var minute_position = {"x": 0, "y": 0, "radius": 120, "angle": 6, "num": 0};
+
+    var second_position = {"x": 0, "y": 0, "radius": 150, "angle": 6, "num": 0};
+
+    var bgCycle = {x: 180, y: 180, radius: 180};
+
+    var hours = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+
+
+    function updateTime() {
+
+        var date = new Date();
+
+        var current_second = date.getSeconds();
+
+        if (current_second != second) {
+
+            second = current_second;
+
+            second_position.num = second;
+
+            calculatePosition(second_position);
+
+            var current_minute = date.getMinutes();
+
+            if (current_minute != minute) {
+
+                minute = current_minute;
+
+                minute_position.num = minute;
+
+                calculatePosition(minute_position);
+
+                var current_hour = date.getHours();
+
+                if (current_hour != hour) {
+
+                    hour = current_hour;
+
+                    hour_position.num = hour;
+
+                    calculatePosition(hour_position);
+                }
+
+            }
+
+            drawTrueClock();
+
+            updateTimerSpan();
+        }
+
+    }
+
+    //更新闹钟的指针坐标
+    function calculatePosition(position) {
+
+        var radian = (2 * Math.PI / 360) * position.angle * position.num;
+
+        position.x = bgCycle.x + Math.sin(radian) * position.radius;
+
+        position.y = bgCycle.y - Math.cos(radian) * position.radius;
+
+    }
+
+    //canvas 没有实现脏矩形算法，没办法清除部分内容，所以每次都需要重新刷新绘画整个画布。
+    function drawTrueClock() {
+
+        ctx.beginPath()
+
+        ctx.arc(bgCycle.x, bgCycle.y, bgCycle.radius, 0, Math.PI * 2, true);
+
+        ctx.closePath();
+
+        ctx.fillStyle = "#ffffff";
+
+        ctx.fill();
+
+        ctx.font = '20px Arial';
+
+        ctx.textAlign = 'center';
+
+        ctx.textBaseline = 'middle';
+
+        ctx.fillStyle = '#000000';
+
+        for (var i = 0; i < hours.length; i++) {
+
+            var radian = (2 * Math.PI / 360) * hour_position.angle * hours[i];
+
+            var x = bgCycle.x + Math.sin(radian) * 165;
+
+            var y = bgCycle.y - Math.cos(radian) * 165;
+
+            ctx.fillText("" + hours[i], x, y);
+        }
+
+        ctx.moveTo(bgCycle.x, bgCycle.y);
+
+        ctx.lineTo(hour_position.x, hour_position.y);
+
+        ctx.lineWidth = 3;
+
+        ctx.strokeStyle = '#000000';
+
+        ctx.stroke();
+
+
+        ctx.moveTo(bgCycle.x, bgCycle.y);
+
+        ctx.lineTo(minute_position.x, minute_position.y);
+
+        ctx.lineWidth = 2;
+
+        ctx.strokeStyle = '#000000';
+
+        ctx.stroke();
+
+
+        ctx.moveTo(bgCycle.x, bgCycle.y);
+
+        ctx.lineTo(second_position.x, second_position.y);
+
+        ctx.lineWidth = 1;
+
+        ctx.strokeStyle = '#000000';
+
+        ctx.stroke();
+
+    }
+
+    //setTimeout实现的回调机制，没发精准计时,误差比较大。
+    //实现精准计时
+    function timeLoop() {
+
+        updateTime();
+
+        requestAnimationFrame(timeLoop);
+    }
+
+    setTimeout(timeLoop);
+
+    //更新文本时间提示
+    function updateTimerSpan() {
+
+        var timeTxt = hour + " 时 " + minute + " 分 " + second + " 秒";
+
+        span.innerText = timeTxt;
+
+    }
+
+    //更新每秒需要更新的任务
+    function updateSecondTodo(second) {
+
+    }
+
+    //更新每分钟需要更新的任务
+    function updateMinuteTodo(minute) {
+
+    }
+
+    //更新每小时需要更新的任务
+    function updateHourTodo(hour) {
+
+    }
+</script>
+
+</html>

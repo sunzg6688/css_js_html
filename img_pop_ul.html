@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/common_lib.css"/>
+    <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="util/CssParse.js"></script>
+    <script type="text/javascript" src="util/Util.js"></script>
+    <title>横向列表展示图片，点击列表小图，根据窗口大小显示大图</title>
+    <script>
+        //                var mobileKeyWords = new Array('iPhone', 'iPad', 'iPod', 'Android');
+        //                for (var word in mobileKeyWords) {
+        //                    if (navigator.userAgent.match(mobileKeyWords[word]) != null) {
+        //                        window.location.href = 'mobile.html';
+        //                    }
+        //                }
+    </script>
+
+    <style>
+        .ul_div {
+            width: 1280px;
+            margin: 30px auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ul_left, .ul_right {
+            width: 40px;
+            float: left;
+            height: 133px;
+            text-align: center;
+            writing-mode: tb-lr;
+            -webkit-writing-mode: vertical-lr;
+            writing-mode: vertical-lr;
+            *writing-mode: tb-lr;
+
+        }
+
+        .ul_left img, .ul_right img {
+
+        }
+
+        .ul_content {
+            float: left;
+            width: 1200px;
+            overflow: hidden;
+        }
+
+        .ul_content ul {
+            width: 2200px;
+            list-style: none;
+            list-style-type: none;
+        }
+
+        .ul_content li {
+            width: 200px;
+            float: left;
+            cursor: pointer;
+        }
+
+        .pointer {
+            cursor: pointer;
+        }
+
+        .vh {
+            line-height: 133px;
+            font-size: 0;
+            height: 133px;
+        }
+
+        .vh img {
+            vertical-align: middle;
+        }
+
+        .vh2 {
+            line-height: 133px;
+            height: 133px;
+            position: relative;
+        }
+
+        .vh2 img {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+        }
+
+        .index_div {
+            width: 1280px;
+            margin: 20px auto
+        }
+
+        .index_ul {
+            width: 200px;
+            margin: 0 auto;
+            list-style: none;
+        }
+
+        .index_ul li {
+            float: left;
+        }
+
+        #popupDiv {
+            display: none;
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            z-index: 990;
+        }
+
+        #popup_bg {
+            background-color: #000000;
+            filter: alpha(Opacity=60);
+            -moz-opacity: 0.6;
+            opacity: 0.6;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+        }
+
+        #content_div {
+            position: absolute;
+            z-index: 991;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+        }
+
+        #popup_img {
+            width: 80%;
+            max-width: 1280px;
+        }
+
+        .close_btn11 {
+            position: absolute;
+            z-index: 992;
+            right: 20px;
+            top: 20px;
+            width: 40px;
+            height: 40px;
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="framework">
+    <div class="ul_div">
+        <div class="ul_left pointer"><img class="w_90" onclick="nextLi(+1)" src="images/left.jpg"></div>
+        <div class="ul_content">
+            <ul id="show_ul">
+                <li><img src="images/s0.jpg"></li>
+                <li><img src="images/s1.jpg"></li>
+                <li><img src="images/s2.jpg"></li>
+                <li><img src="images/s3.jpg"></li>
+                <li><img src="images/s4.jpg"></li>
+                <li><img src="images/s5.jpg"></li>
+                <li><img src="images/s6.jpg"></li>
+                <li><img src="images/s7.jpg"></li>
+                <li><img src="images/s8.jpg"></li>
+                <li><img src="images/s9.jpg"></li>
+                <li><img src="images/s10.jpg"></li>
+            </ul>
+        </div>
+        <div class="ul_right pointer"><img onclick="nextLi(-1)" src="images/right.jpg"></div>
+    </div>
+    <div class="vh"><img onclick="nextLi(-1)" src="images/right.jpg"></div>
+
+    <div class="m_20px_a w_90 t-a_c">
+        <img src="images/s0.jpg">
+    </div>
+    <div class="index_div o_h">
+        <ul class="index_ul o_h">
+            <li class="li_on">
+                <img src="images/heidian_14.png">
+            </li>
+            <li>
+                <img src="images/huidian_14.png">
+            </li>
+            <li>
+                <img src="images/huidian_14.png">
+            </li>
+        </ul>
+    </div>
+</div>
+<div id="popupDiv">
+    <div id="popup_bg"></div>
+    <div id="content_div">
+        <img id="popup_img" src="images/s0.jpg">
+    </div>
+    <img class="close_btn11" onclick="closeShowImg()" src="images/close_btn.png">
+</div>
+<div id="textAreaDiv" class="m_20px_a w_90">
+    <span class="w_100 textArea" id="textArea" style="padding-left:100px;word-wrap:break-word;">cssParse</span>
+</div>
+<script>
+
+    function initUl() {
+
+        $("#show_ul li").on("click", function () {
+
+            var index = $(this).index();
+
+            showImg(index);
+
+        })
+    }
+
+    initUl();
+
+    var show_li_num = 6;
+
+    var li_num = 10;
+
+    var show_max_li = li_num - show_li_num + 1;
+
+    var current_li = 0;
+
+    var li_width = 200;
+
+    var current_left = 0;
+
+    var is_animate = false;
+
+    function nextLi(index) {
+
+        if (is_animate)return;
+
+        current_li += index;
+
+        if (current_li < 0) {
+
+            current_li = 0;
+
+            return;
+
+        } else if (current_li > show_max_li) {
+
+            current_li = show_max_li;
+
+            return;
+
+        }
+
+        is_animate = true;
+
+        if (index > 0) {
+
+            current_left -= li_width;
+
+        } else {
+
+            current_left += li_width;
+
+        }
+
+        $("#show_ul").animate({marginLeft: current_left}, function () {
+
+            is_animate = false;
+
+        });
+
+    }
+
+    var update_time = 5000;
+
+    function autoKv() {
+
+        if (is_animate) {
+
+            setTimeout(autoKv, update_time);
+
+            return;
+        }
+
+        if (current_li == show_max_li) {
+
+            is_animate = true;
+
+            current_li = 0;
+
+            current_left = 0;
+
+            $("#show_ul").animate({marginLeft: 0}, function () {
+
+                is_animate = false;
+
+            });
+
+        } else {
+
+            nextLi(+1);
+
+        }
+
+        setTimeout(autoKv, update_time);
+    }
+
+    autoKv();
+
+</script>
+<script>
+    function showImg(src) {
+
+        $("#popupDiv").height($(window).height());
+
+        $("#popupDiv").width($(window).width());
+
+        $("#popupDiv").show();
+
+        $("#popup_img").attr("src", "images/b" + src + ".jpg");
+
+        var w = document.documentElement.clientWidth;
+
+        var h = document.documentElement.clientHeight;
+
+        console.log(h);
+
+        if (h < 848) {
+
+            $("#popup_img").height(h * 0.8);
+
+            var top = h * 0.1;
+
+            $("#content_div").css("padding-top", top + "px");
+
+            w = h / 848 * 1280 * 0.8;
+
+            $("#popup_img").width(w);
+
+        } else {
+
+            var top = (h - 848) / 2;
+
+            $("#content_div").css("padding-top", top + "px");
+
+        }
+
+    }
+
+    function closeShowImg() {
+
+        $("#popupDiv").hide();
+
+    }
+
+</script>
+
+
+<style>
+    #img_wall {
+
+    }
+</style>
+<div class="w_90 m_30px_a o_h">
+    <div class="w_100 t-a_c"> 不定宽度瀑布流</div>
+    <div id="img_wall" class="w_100"></div>
+</div>
+
+<script>
+    window.addEventListener("onscroll", scrollHandler, false);
+
+
+    function scrollHandler() {
+
+    }
+
+    initImageWallParams();
+
+    var wall_width;
+
+    var line_num;
+
+    var line_width_arr = [];
+
+    var wall = eid("img_wall");
+
+    function initImageWallParams() {
+
+        wall_width = eid("img_wall").clientWidth;
+
+        wall = eid("img_wall");
+
+        for (var l = 0; l < 4; l++) {
+
+            setLineNum();
+
+            creatDivList();
+        }
+
+    }
+
+    function creatDivList() {
+
+        var lg = line_width_arr.length;
+
+        for (var i = 0; i < lg; i++) {
+
+            var index = Math.floor(Math.random() * lg);
+
+            var i_value = line_width_arr[i];
+
+            line_width_arr[i] = line_width_arr[index];
+
+            line_width_arr[index] = i_value;
+        }
+
+        while (line_width_arr.length) {
+
+            var div_width = line_width_arr.shift();
+
+            var div = document.createElement("div");
+
+            var color = '#' + ('00000' + (Math.random() * 0x1000000 << 0).toString(16)).slice(-6);
+
+            div.style.backgroundColor = color;
+
+            div.style.float = "left";
+
+            div.style.height = "300px";
+
+            div.style.width = div_width + "px";
+
+//            div.style.marginTop="15px";
+
+            wall.appendChild(div);
+
+        }
+    }
+
+
+    function setLineNum() {
+
+        line_width_arr = [];
+
+        line_num = 4 + Math.floor(Math.random() * 3);
+
+        console.log("line_num:", line_num);
+
+        var line_width = 99.8 / line_num * 0.01 * wall_width;
+
+        //最小宽度为line_width的70%，为了不出现特别窄的，不利于查看。
+        var base_width = line_width * 0.7;
+
+        var random_width = line_width * 0.1;
+
+        var total = 3 * line_num;
+
+        var time = 0;
+
+        console.log("line_width:", line_width, "base_width:", base_width, "random_width:", random_width, "total:", total);
+
+        while (total > 0) {
+
+            var random_num = Math.round(Math.random() * total);
+
+            //防止一个格子特别宽，其他的都比较窄
+            while (random_num > 0.4 * total) {
+
+                random_num = Math.round(Math.random() * total);
+            }
+
+            total -= random_num;
+
+            console.log("random_num", random_num, "total:", total);
+
+            time++;
+
+            if (time < line_num) {
+
+                if (total > 0) {
+
+                    line_width_arr.push(base_width + random_width * random_num);
+
+                } else {
+
+                    line_width_arr.push(base_width + random_width * random_num);
+
+                    console.log("line_width_arr.length:", line_width_arr.length);
+
+                    var last_num = line_num - line_width_arr.length;
+
+                    for (var i = 0; i < last_num; i++) {
+
+                        line_width_arr.push(base_width);
+
+                    }
+
+                    break;
+                }
+
+            } else {
+
+                console.log("total+random_num:::", total + random_num);
+
+                line_width_arr.push(base_width + random_width * (total + random_num));
+
+                break;
+
+            }
+
+        }
+
+        console.log(line_width_arr);
+
+        var num = 0;
+
+        for (var i = 0; i < line_width_arr.length; i++) {
+
+            num += line_width_arr[i];
+
+        }
+
+        console.log(num);
+    }
+
+    setLineNum();
+
+</script>
+</body>
+</html>

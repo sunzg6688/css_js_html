@@ -1,0 +1,65 @@
+body,html,#stage{
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #18c6eb;
+}
+
+#drinkCount{
+    margin: 20px 0px;
+    width: 100%;
+    line-height: 30px;
+    overflow: hidden;
+}
+#drinkCount span{
+    width: 100%;
+    text-align: center;
+    float: left;
+    font-size: 20px;
+    color: #ffffff;
+}
+#content{
+    position: relative;
+    width: 100%;
+}
+#feeder{
+    position: absolute;
+    top: 0px;
+    z-index: 99;
+}
+
+#child{
+    position: absolute;
+}
+
+#timeline{
+    width: 100%;
+    height: 16px;
+    border: 1px solid #ff0000;
+    border-radius: 8px;
+    position: fixed;
+    bottom: 30px;
+    overflow: hidden;
+}
+#timeprocess{
+    width: 0px;
+    background-color: #ff0000;
+    height: 100%;
+}
+
+.milk{
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ffffff;
+    border-radius: 15px;
+    background-color: #ffffff;
+    position: absolute;
+}
+
+#mouth{
+    border: 1px solid #ffffff;
+    background-color: #000;
+    position: absolute;
+}

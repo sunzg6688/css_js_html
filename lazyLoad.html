@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/common_lib.css"/>
+    <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="util/CssParse.js"></script>
+    <script type="text/javascript" src="util/Util.js"></script>
+
+    <title>懒加载，瀑布流</title>
+</head>
+<body>
+
+
+<style>
+    html, body {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        min-width: 1440px;
+    }
+
+    .w_1440px {
+        width: 1440px;
+        margin-bottom: 50px;
+    }
+
+    .t-a_c.a {
+        font-size: 30px;
+    }
+
+    .t-a_c #txt {
+        color: red;
+    }
+</style>
+
+<div class="t-a_c"><img src="images/s0.jpg"></div>
+
+<div style="height: 200px;background-color: #555555;position: relative">
+    <!--<img style="position: absolute;left: 0;top:0;right: 0;bottom: 0;margin: auto" src="images/s0.jpg">-->
+    <div style="position: absolute;left: 0;top:0;right: 0;bottom: 0;margin: auto">
+        佛噶阿三冠军阿隆索个。佛噶阿三冠军阿隆索个。佛噶阿三冠军阿隆索个。佛噶阿三冠军阿隆索个。佛噶阿三冠军阿隆索个。佛噶阿三冠军阿隆索个。佛噶阿三冠军阿隆索个。佛噶阿三冠军阿隆索个。佛噶阿三冠军阿隆索个。佛噶阿三冠军阿隆索个。佛噶阿三冠军阿隆索个。佛噶阿三冠军阿隆索个。佛噶阿三冠军阿隆索个。佛噶阿三冠军阿隆索个。佛噶阿三冠军阿隆索个。佛噶阿三冠军阿隆索个。佛噶阿三冠军阿隆索个。佛噶阿三冠军阿隆索个。佛噶阿三冠军阿隆索个。佛噶阿三冠军阿隆索个。
+    </div>
+</div>
+<div id="content" class="w_1440px m_30px_a o_h">
+    <div id="span_div" class="w_1440px t-a_c a"> 随机宽度，高度固定瀑布流<span id="txt"> aaa</span></div>
+    <div id="img_wall" class="w_1440px o_h"></div>
+</div>
+
+<script>
+
+    var wall_width;
+
+    var line_num;
+
+    var line_width_arr = [];
+
+    var wall = eid("img_wall");
+
+    var img_num = 0;
+
+    var add_tip = true;
+
+    function initImageWallParams() {
+
+        if (img_num > 100) {
+
+            //请求后台新的数据，或者请求翻页
+
+            if (add_tip) {
+
+                var div = document.createElement("div");
+
+                div.style.height = "300px";
+
+                div.style.width = "100%";
+
+                div.style.textAlign = "center";
+
+                div.innerHTML = "请求后台新的数据，或者请求翻页";
+
+                div.style.marginTop = "15px";
+
+                eid("content").appendChild(div);
+
+                add_tip = false;
+            }
+
+            return;
+        }
+
+        //这个地方在浏览器渲染完成，前后值是不同的！因为浏览器还没有计算完真正的大小吗？还是浏览器bug？
+
+        wall_width = eid("img_wall").clientWidth;
+
+        wall = eid("img_wall");
+
+        for (var l = 0; l < 4; l++) {
+
+            setLineNum();
+
+            creatDivList();
+        }
+
+    }
+
+    function creatDivList() {
+
+        var lg = line_width_arr.length;
+
+        for (var i = 0; i < lg; i++) {
+
+            var index = Math.floor(Math.random() * lg);
+
+            var i_value = line_width_arr[i];
+
+            line_width_arr[i] = line_width_arr[index];
+
+            line_width_arr[index] = i_value;
+
+        }
+
+        while (line_width_arr.length) {
+
+            var div_width = line_width_arr.shift();
+
+            var div = document.createElement("div");
+
+            var color = '#' + ('00000' + (Math.random() * 0x1000000 << 0).toString(16)).slice(-6);
+
+            div.style.backgroundColor = color;
+
+            div.style.float = "left";
+
+            div.style.height = "300px";
+
+            div.style.width = div_width + "px";
+
+            div.style.marginTop = "15px";
+
+            wall.appendChild(div);
+
+            img_num++;
+
+        }
+    }
+
+
+    function setLineNum() {
+
+        line_width_arr = [];
+
+        line_num = 4 + Math.floor(Math.random() * 3);
+
+        var line_width = 99.8 / line_num * 0.01 * wall_width;
+
+        //最小宽度为line_width的70%，为了不出现特别窄的，不利于查看。
+        var base_width = line_width * 0.7;
+
+        var random_width = line_width * 0.1;
+
+        var total = 3 * line_num;
+
+        var time = 0;
+
+        while (total > 0) {
+
+            var random_num = Math.round(Math.random() * total);
+
+            //防止一个格子特别宽，其他的都比较窄
+            while (random_num > 0.4 * total) {
+
+                random_num = Math.round(Math.random() * total);
+            }
+
+            total -= random_num;
+
+            time++;
+
+            if (time < line_num) {
+
+                if (total > 0) {
+
+                    line_width_arr.push(base_width + random_width * random_num);
+
+                } else {
+
+                    line_width_arr.push(base_width + random_width * random_num);
+
+                    var last_num = line_num - line_width_arr.length;
+
+                    for (var i = 0; i < last_num; i++) {
+
+                        line_width_arr.push(base_width);
+
+                    }
+
+                    break;
+                }
+
+            } else {
+
+                line_width_arr.push(base_width + random_width * (total + random_num));
+
+                break;
+
+            }
+
+        }
+
+        var num = 0;
+
+        for (var i = 0; i < line_width_arr.length; i++) {
+
+            num += line_width_arr[i];
+
+        }
+    }
+
+    window.addEventListener("scroll", scrollHandler, false);
+
+    var offsetY = -70;
+
+    function scrollHandler() {
+
+        var img_rect = eid("img_wall").getBoundingClientRect();
+
+        var screenHeight = document.documentElement.clientHeight || window.innerHeight;
+
+        if (img_rect.bottom - screenHeight <= offsetY) {
+
+            initImageWallParams();
+        }
+
+    }
+
+    //    initImageWallParams();
+
+</script>
+</body>
+</html>
