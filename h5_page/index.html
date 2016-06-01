@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <title></title>
+    <style>
+        html,body{
+            margin: 0;
+            padding: 0;
+        }
+        .nav{
+            width: 100%;
+            position: relative;
+            line-height: 0;
+        }
+        .navul{
+            list-style: none;
+        }
+
+        /*其它end*/
+        .navclick{
+            position:absolute;
+            right:0.3rem;
+            top:0.32rem;
+        }
+
+        .navclick ul{
+            width:42px;
+            height:30px;
+        }
+
+        .navclick ul li{
+            float:left;
+            width:28px;
+            height:4px;
+            margin-top:5px;
+            background:#FFFFFF;
+            margin-left:8.5px;
+            opacity:1;
+        }
+
+        .transitions03{
+            -webkit-transition:all .5s ease-in-out;
+            -moz-transition:all .5s ease-in-out;
+            -o-transition:all .5s ease-in-out;
+            transition:all .5s ease-in-out;
+        }
+
+        .rotations45{
+            transform:rotate(45deg) translateX(6px) translateY(6px);
+            -ms-transform:rotate(45deg) translateX(6px) translateY(6px);; 	/* IE 9 */
+            -moz-transform:rotate(45deg) translateX(6px) translateY(6px);; 	/* Firefox */
+            -webkit-transform:rotate(45deg) translateX(6px) translateY(6px);; /* Safari å’Œ Chrome */
+            -o-transform:rotate(45deg) translateX(6px) translateY(6px);; 	/* Opera */
+        }
+
+        .rotations45f{
+            transform:rotate(-45deg) translateX(7px) translateY(-7px);;
+            -ms-transform:rotate(-45deg) translateX(7px) translateY(-7px);; 	/* IE 9 */
+            -moz-transform:rotate(-45deg) translateX(7px) translateY(-7px);; 	/* Firefox */
+            -webkit-transform:rotate(-45deg) translateX(7px) translateY(-7px);; /* Safari å’Œ Chrome */
+            -o-transform:rotate(-45deg) translateX(7px) translateY(-7px);; 	/* Opera */
+        }
+
+        .navclick ul li.opaction0{
+            opacity:0;
+        }
+
+        .menu{
+            overflow: hidden;
+            background-color: #000000;
+            color: #FFFFFF;
+            font-size: 1.8em;
+            line-height: 2.8em;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            display: none;
+            z-index: 999;
+        }
+        .f_r{
+            float: right;
+            clear: right;
+        }
+        .w_100{
+            width: 100%;
+        }
+
+        .l_h_0{
+            line-height: 0px;
+        }
+        #content{
+            overflow: hidden;
+            position: relative;
+        }
+        .feed{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            display: none;
+        }
+
+        #feed0{
+            top: 0px;
+        }
+
+        .desc{
+            background-color: #fee436;
+            color: #000000;
+            font-size: 2em;
+            text-align: center;
+        }
+
+        #desc span{
+            width: 100%;
+        }
+
+        .m_5{
+            margin-top: 5px;
+        }
+
+    </style>
+    <!--<link rel="stylesheet" href="css/common_lib.css">-->
+    <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+</head>
+<body>
+<div class="nav">
+    <img class="w_100" src="images/nav_bg.jpg">
+    <div class="navclick">
+        <ul class="navul">
+            <li class="first1li transitions03"></li>
+            <li class="first2li transitions03"></li>
+            <li class="first3li transitions03"></li>
+        </ul>
+    </div>
+</div>
+<div class="menu">
+    <div class="f_r">
+        <a onclick="gotoPage(0)">
+            <span>产品介绍</span>
+        </a>
+    </div>
+    <div class="f_r">
+        <a onclick="gotoPage(1)">
+            <span>产品效果</span>
+        </a>
+    </div>
+    <div class="f_r">
+        <a onclick="gotoPage(7)">
+            <span>广告主获益点</span>
+        </a>
+    </div>
+    <div class="f_r">
+        <a onclick="gotoPage(8)">
+            <span>电视剧资源</span>
+        </a>
+    </div>
+    <div class="f_r">
+        <a onclick="gotoPage(9)">
+            <span>联系方式</span>
+        </a>
+    </div>
+
+</div>
+<div id="content">
+    <div id="feed0" class="feed">
+        <div class="l_h_0">
+            <img class="w_100" src="images/H5_01.jpg">
+        </div>
+        <div class="desc">
+            <span>产品效果</span><br>
+            <span>﹀</span>
+        </div>
+    </div>
+    <div id="feed1" class="feed">
+        <div class="l_h_0">
+            <img class="w_100" src="images/H5_02_title.jpg">
+        </div>
+        <div class="l_h_0 m_5">
+            <img class="w_100" src="images/H5_02.jpg">
+        </div>
+    </div>
+    <div id="feed2" class="feed">
+        <div class="l_h_0">
+            <img class="w_100" src="images/H5_03_title.jpg">
+        </div>
+        <div class="l_h_0 m_5">
+            <img class="w_100" src="images/H5_03.jpg">
+        </div>
+    </div>
+    <div id="feed3" class="feed">
+        <div class="l_h_0">
+            <img class="w_100" src="images/H5_04_title.jpg">
+        </div>
+        <div class="l_h_0 m_5">
+            <img class="w_100" src="images/H5_04.jpg">
+        </div>
+    </div>
+    <div id="feed4" class="feed">
+        <div class="l_h_0">
+            <img class="w_100" src="images/H5_05_title.jpg">
+        </div>
+        <div class="l_h_0 m_5">
+            <img class="w_100" src="images/H5_05.jpg">
+        </div>
+    </div>
+    <div id="feed5" class="feed">
+        <div class="l_h_0">
+            <img class="w_100" src="images/H5_06_title.jpg">
+        </div>
+        <div class="l_h_0 m_5">
+            <img class="w_100" src="images/H5_06.jpg">
+        </div>
+    </div>
+    <div id="feed6" class="feed">
+        <div class="l_h_0">
+            <img class="w_100" src="images/H5_07_title.jpg">
+        </div>
+        <div class="l_h_0 m_5">
+            <img class="w_100" src="images/H5_07.jpg">
+        </div>
+    </div>
+    <div id="feed7" class="feed">
+        <div class="l_h_0">
+            <img class="w_100" src="images/H5_09_02.jpg">
+        </div>
+        <div class="desc">
+            <span>电视剧资源</span><br>
+            <span>﹀</span>
+        </div>
+    </div>
+    <div id="feed8" class="feed">
+        <div class="l_h_0">
+            <img class="w_100" src="images/H5_10_02.jpg">
+        </div>
+        <div class="desc">
+            <span>Contact Us</span><br>
+            <span>﹀</span>
+        </div>
+    </div>
+    <div id="feed9" class="feed">
+        <div class="l_h_0">
+            <img class="w_100" src="images/H5_11_02.jpg">
+        </div>
+        <div class="l_h_0">
+            <img class="w_100" src="images/H5_11_logo_04.jpg">
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
