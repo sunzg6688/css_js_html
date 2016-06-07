@@ -4,81 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width,initial-scale=1, maximum-scale=1, user-scalable=no"/>
-    <title>H5 单页应用</title>
+    <title>cheilPengTai DIVA</title>
     <style>
         html,body{
             margin: 0;
             padding: 0;
+            background-color: #292929;
+            font-family: 'SamsungIFRg','Microsoft YaHei',AppleGothic,sans-serif;
         }
         .nav{
             width: 100%;
             position: relative;
             line-height: 0;
-        }
-        .navul{
-            list-style: none;
+            background-color: #292929;
         }
 
-        /*其它end*/
-        .navclick{
-            position:absolute;
-            right:0.3rem;
-            top:0.32rem;
-        }
-
-        .navclick ul{
-            width:42px;
-            height:30px;
-        }
-
-        .navclick ul li{
-            float:left;
-            width:28px;
-            height:4px;
-            margin-top:5px;
-            background:#FFFFFF;
-            margin-left:8.5px;
-            opacity:1;
-        }
-
-        .transitions03{
-            -webkit-transition:all .5s ease-in-out;
-            -moz-transition:all .5s ease-in-out;
-            -o-transition:all .5s ease-in-out;
-            transition:all .5s ease-in-out;
-        }
-
-        .rotations45{
-            transform:rotate(45deg) translateX(6px) translateY(6px);
-            -ms-transform:rotate(45deg) translateX(6px) translateY(6px);; 	/* IE 9 */
-            -moz-transform:rotate(45deg) translateX(6px) translateY(6px);; 	/* Firefox */
-            -webkit-transform:rotate(45deg) translateX(6px) translateY(6px);; /* Safari å’Œ Chrome */
-            -o-transform:rotate(45deg) translateX(6px) translateY(6px);; 	/* Opera */
-        }
-
-        .rotations45f{
-            transform:rotate(-45deg) translateX(7px) translateY(-7px);;
-            -ms-transform:rotate(-45deg) translateX(7px) translateY(-7px);; 	/* IE 9 */
-            -moz-transform:rotate(-45deg) translateX(7px) translateY(-7px);; 	/* Firefox */
-            -webkit-transform:rotate(-45deg) translateX(7px) translateY(-7px);; /* Safari å’Œ Chrome */
-            -o-transform:rotate(-45deg) translateX(7px) translateY(-7px);; 	/* Opera */
-        }
-
-        .navclick ul li.opaction0{
-            opacity:0;
-        }
-
-        .menu{
-            overflow: hidden;
-            background-color: #000000;
-            color: #FFFFFF;
-            font-size: 1.8em;
-            line-height: 2.8em;
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            display: none;
-            z-index: 999;
+        .nav img{
+            opacity: 0;
         }
         .f_r{
             float: right;
@@ -90,6 +32,18 @@
 
         .l_h_0{
             line-height: 0px;
+        }
+
+        .big_img_div{
+            position: relative;
+        }
+
+        .big_img_div img{
+            width: 100%;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            position: absolute;
         }
         #content{
             overflow: hidden;
@@ -108,17 +62,90 @@
 
         .desc{
             background-color: #fee436;
-            color: #000000;
-            font-size: 2em;
+            color: #222222;
+            font-size: 20px;
             text-align: center;
+            height: 50px;
+            line-height: 25px;
+
+            padding-top: 10px;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
         }
 
         #desc span{
             width: 100%;
         }
 
-        .m_5{
-            margin-top: 5px;
+        .gif_div,.show_gif_div{
+            position: relative;
+        }
+
+        .gif_img{
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            margin: auto 0;
+        }
+
+        #ul_div{
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #left_arrow_img{
+            width: 17%;
+            position: absolute;
+            top: 100px;
+            left: 5px;
+        }
+
+        #right_arrow_img{
+            width: 17%;
+            position: absolute;
+            top: 100px;
+            right: 5px;
+        }
+
+        #img_ul{
+            list-style: none;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        #img_ul li{
+            display: inline-block;
+            float: left;
+        }
+
+        .gif_icon{
+            position: absolute;
+            left: 0;
+            bottom: 30px;
+            width: 100%;
+            display: flex ;
+        }
+        .gif_jpg{
+            flex: 1;
+        }
+        .gif_jpg img{
+            width: 94%;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .on{
+            border: #ff0000 solid 2px;
+        }
+
+        #feed7,#feed8,#feed9{
+
+            background-color: #ffffff;
         }
 
     </style>
@@ -127,130 +154,196 @@
     <script type="text/javascript" src="js/index.js"></script>
 </head>
 <body>
-<div class="nav">
-    <img class="w_100" src="images/nav_bg.jpg">
-    <div class="navclick">
-        <ul class="navul">
-            <li class="first1li transitions03"></li>
-            <li class="first2li transitions03"></li>
-            <li class="first3li transitions03"></li>
-        </ul>
-    </div>
+<div class="nav" id="nav">
+    <img id="nav_img" class="w_100" src="images/nav_bg.jpg">
 </div>
-<div class="menu">
-    <div class="f_r">
-        <a onclick="gotoPage(0)">
-            <span>产品介绍</span>
-        </a>
-    </div>
-    <div class="f_r">
-        <a onclick="gotoPage(1)">
-            <span>产品效果</span>
-        </a>
-    </div>
-    <div class="f_r">
-        <a onclick="gotoPage(7)">
-            <span>广告主获益点</span>
-        </a>
-    </div>
-    <div class="f_r">
-        <a onclick="gotoPage(8)">
-            <span>电视剧资源</span>
-        </a>
-    </div>
-    <div class="f_r">
-        <a onclick="gotoPage(9)">
-            <span>联系方式</span>
-        </a>
-    </div>
 
-</div>
 <div id="content">
     <div id="feed0" class="feed">
-        <div class="l_h_0">
-            <img class="w_100" src="images/H5_01.jpg">
+        <div class="l_h_0 big_img_div">
+            <img class="w_100" src="images/cover.jpg">
+        </div>
+        <div class="desc">
+            <span>了解更多</span><br>
+            <span>﹀</span>
+        </div>
+    </div>
+    <div id="feed1" class="feed">
+        <div class="l_h_0 big_img_div">
+            <img class="w_100" src="images/1.jpg">
         </div>
         <div class="desc">
             <span>产品效果</span><br>
             <span>﹀</span>
         </div>
     </div>
-    <div id="feed1" class="feed">
-        <div class="l_h_0">
-            <img class="w_100" src="images/H5_02_title.jpg">
-        </div>
-        <div class="l_h_0 m_5">
-            <img class="w_100" src="images/H5_02.jpg">
-        </div>
-    </div>
     <div id="feed2" class="feed">
-        <div class="l_h_0">
-            <img class="w_100" src="images/H5_03_title.jpg">
+        <div class="l_h_0 gif_div">
+            <div class="show_gif_div">
+                <img id="show_gif" class="w_100 gif_img" src="images/gif1.gif">
+            </div>
+            <div class="gif_icon">
+                <div class="gif_jpg"><img class="on" onclick="showGif(1,this)" src="images/gif1.jpg"></div>
+                <div class="gif_jpg"><img onclick="showGif(2,this)" src="images/gif2.jpg"></div>
+                <div class="gif_jpg"><img onclick="showGif(3,this)" src="images/gif3.jpg"></div>
+            </div>
         </div>
-        <div class="l_h_0 m_5">
-            <img class="w_100" src="images/H5_03.jpg">
+        <div class="desc">
+            <span>产品效果</span><br>
+            <span>﹀</span>
         </div>
     </div>
     <div id="feed3" class="feed">
-        <div class="l_h_0">
-            <img class="w_100" src="images/H5_04_title.jpg">
+        <div class="l_h_0 gif_div">
+            <div class="show_gif_div">
+                <img id="show_gif2" class="w_100 gif_img" src="images/gif4.gif">
+            </div>
+            <div class="gif_icon">
+                <div class="gif_jpg"><img class="on" onclick="showGif(4,this)" src="images/gif4.jpg"></div>
+                <div class="gif_jpg"><img onclick="showGif(5,this)" src="images/gif5.jpg"></div>
+                <div class="gif_jpg"><img onclick="showGif(6,this)" src="images/gif6.jpg"></div>
+            </div>
         </div>
-        <div class="l_h_0 m_5">
-            <img class="w_100" src="images/H5_04.jpg">
+        <div class="desc">
+            <span>产品效果</span><br>
+            <span>﹀</span>
         </div>
     </div>
     <div id="feed4" class="feed">
-        <div class="l_h_0">
-            <img class="w_100" src="images/H5_05_title.jpg">
+        <div class="l_h_0 gif_div">
+            <div class="show_gif_div">
+                <img id="show_gif3" class="w_100 gif_img" src="images/gif7.gif">
+            </div>
+            <div class="gif_icon">
+                <div class="gif_jpg"><img class="on" onclick="showGif(7,this)" src="images/gif7.jpg"></div>
+                <div class="gif_jpg"><img onclick="showGif(8,this)" src="images/gif8.jpg"></div>
+                <div class="gif_jpg"><img onclick="showGif(9,this)" src="images/gif9.jpg"></div>
+            </div>
         </div>
-        <div class="l_h_0 m_5">
-            <img class="w_100" src="images/H5_05.jpg">
+        <div class="desc">
+            <span>产品效果</span><br>
+            <span>﹀</span>
         </div>
     </div>
     <div id="feed5" class="feed">
-        <div class="l_h_0">
-            <img class="w_100" src="images/H5_06_title.jpg">
+        <div class="l_h_0 big_img_div">
+            <img class="w_100" src="images/3.jpg">
         </div>
-        <div class="l_h_0 m_5">
-            <img class="w_100" src="images/H5_06.jpg">
+        <div class="desc">
+            <span>产品效果</span><br>
+            <span>﹀</span>
         </div>
     </div>
     <div id="feed6" class="feed">
-        <div class="l_h_0">
-            <img class="w_100" src="images/H5_07_title.jpg">
+        <div class="l_h_0 big_img_div">
+            <img class="w_100" src="images/4.jpg">
         </div>
-        <div class="l_h_0 m_5">
-            <img class="w_100" src="images/H5_07.jpg">
+        <div class="desc">
+            <span>全球广告客户</span><br>
+            <span>﹀</span>
         </div>
     </div>
     <div id="feed7" class="feed">
-        <div class="l_h_0">
-            <img class="w_100" src="images/H5_09_02.jpg">
+        <div class="l_h_0 big_img_div">
+            <img class="w_100" src="images/logo1.jpg">
         </div>
         <div class="desc">
-            <span>电视剧资源</span><br>
+            <span>全球广告客户</span><br>
             <span>﹀</span>
         </div>
     </div>
     <div id="feed8" class="feed">
-        <div class="l_h_0">
-            <img class="w_100" src="images/H5_10_02.jpg">
+        <div class="l_h_0 big_img_div">
+            <img class="w_100" src="images/logo1.jpg">
         </div>
         <div class="desc">
-            <span>Contact Us</span><br>
+            <span>内容合作伙伴</span><br>
             <span>﹀</span>
         </div>
     </div>
     <div id="feed9" class="feed">
-        <div class="l_h_0">
-            <img class="w_100" src="images/H5_11_02.jpg">
+        <div class="l_h_0 big_img_div">
+            <img class="w_100" src="images/logo3.jpg">
         </div>
-        <div class="l_h_0">
-            <img class="w_100" src="images/H5_11_logo_04.jpg">
+        <div class="desc">
+            <span>超强广告资源</span><br>
+            <span>﹀</span>
+        </div>
+    </div>
+    <div id="feed10" class="feed">
+        <div id="ul_div" class="l_h_0">
+            <ul id="img_ul">
+                <li>
+                    <img class="w_100" src="images/7.jpg">
+                </li>
+                <li>
+                    <img class="w_100" src="images/8.jpg">
+                </li>
+                <li>
+                    <img class="w_100" src="images/9.jpg">
+                </li>
+                <li>
+                    <img class="w_100" src="images/10.jpg">
+                </li>
+                <li>
+                    <img class="w_100" src="images/11.jpg">
+                </li>
+                <li>
+                    <img class="w_100" src="images/12.jpg">
+                </li>
+                <li>
+                    <img class="w_100" src="images/13.jpg">
+                </li>
+                <li>
+                    <img class="w_100" src="images/14.jpg">
+                </li>
+                <li>
+                    <img class="w_100" src="images/15.jpg">
+                </li>
+            </ul>
+        </div>
+        <div class="desc">
+            <span>联系我们</span><br>
+            <span>﹀</span>
+        </div>
+    </div>
+    <div id="feed11" class="feed">
+        <div class="">
+            <img class="w_100" src="images/pt_logo.jpg">
+        </div>
+        <span style="display:inline-block;width:100%;text-align:center;color: #ffffff;font-size: 2rem;font-weight:bold;line-height: 4rem">数字营销事业部</span><br>
+        <span style="display:inline-block;width:100%;text-align:center;color: #ffffff;font-size: 1.5rem;line-height: 2rem">崔智贤 Jean Choi</span>
+        <span style="display:inline-block;width:100%;text-align:center;color: #ffffff;font-size: 1.25rem;line-height: 2.8rem">jean.choi@cheilpengtai.com</span>
+        <div style="margin: 0 auto;width: 44%;">
+            <div class="share_div" style="display:none;width: 160px; height: 66px;position: absolute;margin-top:-70px;margin-left:-45px;background-color: #ffffff">
+                <div style="width: 50%;float: left"><img onclick="shareWB()" style="width: 80px;display: block; margin: auto" src="images/sina_icon.png"></div>
+                <div style="width: 50%;float: left"><img onclick="showWeixinTip()" style="width: 80px;display: block; margin: auto" src="images/weixin_icon.png"></div>
+            </div>
+        </div>
+        <div style="margin: 0 auto;width: 44%;overflow: hidden">
+            <img onclick="showShare()" style="width: 38.6%;float: left" src="images/shareLogo.jpg">
+            <a href="mailto:jean.choi@cheilpengtai.com"><img style="width: 38.6%;float: right" src="images/mailLogo.jpg"></a>
+        </div>
+        <div style="margin: 15px auto;width: 30%">
+            <img class="w_100" src="images/czx.jpg">
         </div>
     </div>
 </div>
 
+<div id="arrow_div" style="width:100%;display: none;position: absolute;z-index: 99;line-height: 0px">
+    <div id="control_div" style="width: 100%;height: 100%">
+    </div>
+    <img id="left_arrow_img" onclick="gotoPrevPage2()" src="images/left_arrow.png">
+    <img id="right_arrow_img" onclick="gotoNextPage2()" src="images/right_arrow.png">
+</div>
+<div id="share_tip" onclick="hideWeixinTip()" style="display:none;width: 100%;height: 100%;position: fixed;top:0;left:0;z-index: 999;">
+    <div style="width: 100%;height: 100%;background-color: #000000;opacity: 0.8"></div>
+    <img class="w_100" style="position: absolute;left: 0;top: 0" src="images/weixin_tip.png">
+</div>
 
+<div id="share_tip2" onclick="hideWeixinTip2()" style="display:none;width: 100%;height: 100%;position: fixed;top:0;left:0;z-index: 999;">
+    <div style="width: 100%;height: 100%;background-color: #000000;opacity: 0.8"></div>
+    <img  style="position: absolute;width: 150px;left: 0;top: 0;right: 0;bottom: 0;margin: auto" src="images/weixinerweima.png">
+</div>
 </body>
 </html>
