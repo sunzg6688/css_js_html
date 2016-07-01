@@ -1,0 +1,258 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新罗免税店</title>
+    <link rel="stylesheet" type="text/css" href="Content/css/pc.css"/>
+</head>
+<body>
+<div id="wrap">
+    <h1 class="intro_logo">
+        <img src="Content/img/home-logo.png" alt="新罗免税店"/>
+    </h1>
+
+    <div class="intro">
+
+        <div class="movie_wrap">
+            <div class="movie_title">
+                <img src="Content/img/intro_title.png" alt=""/>
+            </div>
+            <ul class="movie_btns">
+                <li class="on">
+                    <a href="#"><img onclick="LinkClick('cn:shilladfs_gxj_20160628:tab_huiqiao','o')"
+                                     src="Content/img/intro_m_h.png" alt=""/></a>
+                </li>
+                <li>
+                    <a href="#"><img onclick="LinkClick('cn:shilladfs_gxj_20160628:tab_guangzhu','o')"
+                                     src="Content/img/intro_m_k.png" alt=""/></a>
+                </li>
+            </ul>
+            <div class="movie_plane">
+                <video class="video_01" width="483" height="272" controls autoplay>
+                    <source src="Content/movie/haekyo.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+        <ul class="go_btns">
+            <div class="shareBtn"><img onclick="LinkClick('cn:shilladfs_gxj_20160628:click_shareweibo','o')"
+                                       src="Content/img/shareBtn.png"/></div>
+            <li class="btns_song">
+                <a class="intro-btn" href="Songhuiqiao.html">
+                    <img onclick="LinkClick('cn:shilladfs_gxj_20160628:click_followhuiqiao','o')"
+                         src="Content/img/intro_h_choice.png" alt="宋慧乔"/>
+                </a>
+            </li>
+            <li>
+                <a class="intro-btn" href="Liguangzhu.html">
+                    <img onclick="LinkClick('cn:shilladfs_gxj_20160628:click_followguangzhu','o')"
+                         src="Content/img/intro_btn.png" alt="李光洙"/>
+                </a>
+            </li>
+        </ul>
+        <div class="alert" style="z-index:15">
+            <div onclick="closeAlert()" class="close_btn"></div>
+            <span id="txt">CN MALL ID完成应募。</span><br>
+            <a><img onclick="closeAlert()" src="Content/img/sure_btn.png"></a>
+        </div>
+
+
+        <div class="sinaPopUserList">
+            <div class="sinaPop_t"><img src="Content/img/shareTitle.png"></div>
+            <div class="sinaPop_cont">
+                <div class="popClose"></div>
+                <!-- share text -->
+                <div class="shareText">
+                    <div class="WbTextNum">140</div>
+                    <textarea id="weiboContent">#新罗购享家#还有什么比加入新罗购享家更划算的事？让你分分钟不用踏出家门就得往返双人韩国机票！更有新罗酒店、日默瓦旅行箱等fashion好礼等你带走。每天话费领取惊喜连连。立即加入新罗购享家，开启你的梦幻韩国购物之旅！http://t.cn/R5Ynwf2 </textarea>
+                </div>
+                <!-- userList -->
+                <div id="vList" style="display: none;">
+                    <div id="vList_container" class="videoList">
+                        <div id="vList_shower" class="itemM">
+
+                        </div>
+                    </div>
+                    <div id="vList_scroller" class="info_scroller">
+                        <div id="vList_scroll_up" class="info_scroll_up"></div>
+                        <div id="vList_scroll_bar" class="info_scroll_bar"></div>
+                        <div id="vList_scroll_down" class="info_scroll_down"></div>
+                    </div>
+                </div>
+                <div class="sinaPop_bot">
+                    <span class="sharePopBtn bNext"><img src="Content/img/bNext.png"></span>
+                    <span class="sharePopBtn bSubmit"><img src="Content/img/sharePopBtn.png"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="Content/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="Content/js/jscroll.js"></script>
+<script type="text/javascript">
+
+    var Company = new scrolls('vList');
+    $(function () {
+        var userState;
+        $.post('@Url.Action("GetUserState","Home")', null, function (d) {
+            userState = d;
+            if (d.authorized) {
+                $('#vList_shower').empty();
+                $.each(d.data.Users, function (index, obj) {
+                    if (index > 39) return;
+                    $('#vList_shower').append('<div class="userItem"><input type="checkbox" name="friendName" value="' + obj.Screen_name + '" style="display:none;" /><div class="userCheck"></div><div class="userImg"><img src="' + obj.Profile_image_url + '"></div></div>');
+                });
+                $(".userItem").on("click", function () {
+                    if (!$(this).find("input[name=friendName]").prop("checked"))
+                        $(this).find("input[name=friendName]").prop("checked", true);
+                    else
+                        $(this).find("input[name=friendName]").prop("checked", false);
+                    $(this).find(".userCheck").toggleClass("userChecked")
+                })
+            }
+        });
+
+        if ('@Request.QueryString["showPopUp"]') {
+            shareRest()
+            $(".sinaPopUserList").show()
+        }
+
+        var arrMovieURL = ['Content/movie/haekyo.mp4', 'Content/movie/kwangsu.mp4'];
+        $('.movie_btns li').click(function (e) {
+            var index = $(this).index()
+            e.preventDefault();
+            if (index == 1) {
+                $(".movie_plane").addClass("li");
+            } else {
+                $(".movie_plane").removeClass("li");
+            }
+            $(this).addClass('on').siblings().removeClass('on');
+            $('.video_01 source').attr('src', arrMovieURL[index]);
+            $('.video_01').load();
+        });
+
+        function shareRest() {
+            $(".shareText,.bNext").show()
+            $("#vList,.bSubmit").hide()
+        }
+
+        // 新浪分享按钮
+        $(".shareBtn").click(function () {
+            if (!userState.authorized) {
+                window.location.href = userState.url;
+                return;
+            }
+
+            shareRest()
+            $(".sinaPopUserList").show()
+        })
+
+        // popClose
+        $(".popClose").click(function () {
+
+            $(".sinaPopUserList").hide();
+        })
+
+        // 好友列表选中操作
+        $(".userItem").bind("click", function () {
+            if (!$(this).find("input[name=friendName]").prop("checked"))
+                $(this).find("input[name=friendName]").prop("checked", true);
+            else
+                $(this).find("input[name=friendName]").prop("checked", false);
+            $(this).find(".userCheck").toggleClass("userChecked")
+        })
+
+        //文字分享提交
+
+        $(".bNext").click(function () {
+            if (userState.data.Users.length < 1) {
+                var data = {
+                    content: $('#weiboContent').val()
+                };
+                publish(data);
+                return;
+            }
+
+            $(this).hide()
+            $(".shareText").hide()
+            $(".bSubmit,#vList").show()
+        })
+        StopTxt($(".shareText textarea"), 140, $(".WbTextNum"))
+        $(document).on("keyup keydown", ".shareText textarea", function () {
+            StopTxt($(this), 140, $(".WbTextNum"))
+        })
+        // 分享文字个数判断
+        function StopTxt(th, nums, th1) {
+            var curLength = th.val().length;
+            if (curLength > nums) {
+                var num = th.val().substr(0, nums);
+                th.val(num);
+                $(th1).text(0);
+            }
+            else {
+                $(th1).text(nums - th.val().length);
+            }
+        }
+
+        // 分享提交
+        $('.bSubmit').click(function () {
+            var array = [];
+            $('input[name=friendName]:checked').each(function () {
+                array.push($(this).val());
+            });
+
+            if (1 > array.length) {
+                alert("必须选择至少1人");
+                return;
+            }
+
+            var data = {
+                content: $('#weiboContent').val(),
+                names: array
+            };
+            publish(data);
+
+            $(".sinaPopUserList").hide();
+        });
+
+        function publish(data) {
+            $.ajax({
+                url: '@Url.Action("PublishWeibo","Activity")',
+                type: 'post',
+                traditional: true,
+                data: data,
+                dataType: 'json',
+                success: function (d) {
+                    alert(d.explain);
+                }
+            });
+        }
+    });
+</script>
+</body>
+</html>
+
+<!-- SiteCatalyst code version: H.24.Copyright 1997-2008 Omniture, Inc. More info available at http://www.omniture.com -->
+<script language="JavaScript" type="text/javascript" src="/event/js/s_code_microsite_p4.js"></script>
+<script language="JavaScript" type="text/javascript"><!--
+s.pageName = "cn:campaign:event:shilladfs_gxj_20160628:homepage"
+s.hier1 = "cn>campaign>event>shilladfs_gxj_20160628>homepage"
+s.channel = "cn:campaign"
+s.prop1 = "cn"
+s.prop2 = "cn:campaign"
+s.prop3 = "cn:campaign:event"
+s.prop4 = "cn:campaign:event:shilladfs_gxj_20160628"
+
+/************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
+var s_code = s.t();
+if (s_code)document.write(s_code)//--></script>
+<script language="JavaScript" type="text/javascript"><!--
+if (navigator.appVersion.indexOf('MSIE') >= 0)document.write(unescape('%3C') + '\!-' + '-')
+//--></script>
+<noscript><a href="http://www.omniture.com" title="Web Analytics"><img
+        src="http://nmetrics.samsung.com/b/ss/sssamsung4cn,sssamsung4mstglobal/1/H.25.5--NS/0"
+        height="1" width="1" border="0" alt=""/></a></noscript><!--/DO NOT REMOVE/-->
+<!-- End SiteCatalyst code version: H.25.5. -->
+
+<script>
+    LinkClick('cn:shilladfs_gxj_20160628:tab_huiqiao', 'o')
+</script>

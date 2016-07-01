@@ -1,0 +1,556 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    font-family: 'SamsungIFRg', 'Microsoft YaHei', AppleGothic, sans-serif;
+}
+
+#stage {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: none;
+}
+
+#bg_div {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+#bg_img {
+    position: absolute;
+    height: 100%;
+}
+
+#bg {
+    position: absolute;
+    height: 100%;
+}
+
+#logo {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1.12%;
+    z-index: 2;
+}
+
+#title {
+    position: absolute;
+    left: 4.26%;
+    top: 0;
+    width: 3.66%;
+    z-index: 2;
+}
+
+#person {
+    position: absolute;
+    display: none;
+    left: 0px;
+    top: 0px;
+}
+
+.flipx {
+    -moz-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    transform: scaleX(-1);
+    /*IE*/
+    filter: FlipH;
+}
+
+#car {
+    position: absolute;
+    display: none;
+    left: 0px;
+    top: 0px;
+}
+
+#car_award_img {
+    position: absolute;
+    display: none;
+}
+
+#plane {
+    position: absolute;
+    display: none;
+    left: 0px;
+    top: 0px;
+}
+
+#plane_award_img {
+    position: absolute;
+    display: none;
+}
+
+#nav {
+    z-index: 5;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: none;
+}
+
+#nav_ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+#nav_ul li {
+    float: left;
+}
+
+#nav_ul li img {
+    height: 100%;
+}
+
+#tip {
+    display: none;
+    z-index: 4;
+    position: absolute;
+}
+
+#d {
+    display: none;
+    z-index: 4;
+    position: absolute;
+}
+
+#award {
+    display: none;
+    z-index: 6;
+    position: absolute;
+}
+
+#tip img, #d img, #award img {
+    width: 100%;
+}
+
+#pop_div {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: none;
+    z-index: 100;
+}
+
+#pop_div div {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+#pop_div img {
+    position: absolute;
+    right: 0;
+    top: 25%;
+    height: 50%;
+}
+
+.lqjp {
+    width: 317px;
+    height: 248px;
+    margin: auto;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    position: fixed;
+    z-index: 9;
+    background: url("../img/lq_bg.png") no-repeat;
+    display: none;
+}
+
+.close_btn {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0;
+}
+
+.span1 {
+    width: 100%;
+    display: block;
+    margin-top: 20px;
+    line-height: 35px;
+    font-size: 25px;
+    text-align: center;
+}
+
+.span2 {
+    width: 100%;
+    display: block;
+    line-height: 35px;
+    font-size: 25px;
+    text-align: center;
+}
+
+.lqjp input {
+    width: 84%;
+    height: 40px;
+    margin-left: 18px;
+    font-size: 25px;
+    color: #555;
+}
+
+.lqjp img {
+    display: block;
+    margin: 8px auto;
+}
+
+.lqjp {
+    /*width: 317px;*/
+    /*height: 248px;*/
+    width: 280px;
+    height: 219px;
+    margin: auto;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    position: fixed;
+    z-index: 9;
+    background: url("../img/lq_bg.png") no-repeat;
+    background-size: 100%;
+    display: none;
+
+}
+
+.close_btn {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0;
+}
+
+.span1 {
+    width: 100%;
+    display: block;
+    margin-top: 20px;
+    line-height: 30px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.span2 {
+    width: 100%;
+    display: block;
+    line-height: 30px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.lqjp .input_div {
+    width: 84%;
+    height: 40px;
+    margin-left: 5%;
+    /*margin-left: 18px;*/
+    /*font-size: 20px;*/
+    /*color: #555;*/
+}
+
+.input_div input {
+    width: 90%;
+    height: 30px;
+    /*margin:  auto;*/
+    /*margin-left: 18px;*/
+    font-size: 20px;
+    color: #555;
+}
+
+.nav_person {
+    margin-left: -100px;
+    position: absolute;
+
+}
+
+.nav_person img {
+    width: 100%;
+}
+
+.index_btn {
+    left: 0px;
+    position: fixed;
+    bottom: 10px;
+    z-index: 101;
+}
+
+.index_btn img {
+    width: 40px;
+}
+
+.alert {
+    width: 280px;
+    height: 219px;
+    margin: auto;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    position: fixed;
+    z-index: 9;
+    background: url("../img/lq_bg.png") no-repeat;
+    background-size: 100%;
+    display: none;
+}
+
+#txt {
+    width: 100%;
+    display: block;
+    line-height: 30px;
+    font-size: 20px;
+    text-align: center;
+    margin-top: 70px;
+
+}
+
+.alert img {
+    display: block;
+    margin: 15px auto;
+}
+
+.shareBtn {
+    position: absolute;
+    z-index: 98;
+    top: 10px;
+    right: 10px;
+    width: 80px;
+    display: none;
+}
+
+.shareBtn img {
+    width: 100%;
+}
+
+#share_content {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    z-index: 99;
+    display: none;
+}
+
+.share_pop {
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    left: 25%;
+    top: 0;
+    z-index: 99;
+    display: none;
+    overflow: scroll;
+}
+
+.bg_color {
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    opacity: 0.5
+}
+
+.sinaPopUserList {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    z-index: 10;
+    /*width: 484px;*/
+    /*margin-left: -242px;*/
+    /*margin-top: -287px;*/
+    width: 100%;
+}
+
+.sinaPop_t {
+    position: relative;
+    z-index: 3;
+    width: 90%;
+    margin: 0 auto;
+    /*margin-bottom: -28px;*/
+    /*padding-left: 12px;*/
+}
+
+.sinaPop_cont {
+    position: relative;
+    border: 3px solid #191919;
+    background: #191919;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.popClose {
+    position: absolute;
+    right: 10px;
+    top: 11px;
+    z-index: 3;
+    width: 26px;
+    height: 26px;
+
+    background: url("../img/sharePopClose.png") no-repeat;
+
+    cursor: pointer;
+}
+
+.shareText {
+    position: relative;
+    padding: 48px 18px 16px;
+    background: #fff;
+}
+
+.shareText textarea {
+    /*width: 422px;*/
+    /*height: 114px;*/
+    /*padding: 5px 10px;*/
+    /*border: none;*/
+    /*background: #ececec;*/
+    /*border-radius: 10px;*/
+    /*font-size: 16px;*/
+
+    width: 100%;
+    height: 114px;
+    border: none;
+    background: #ececec;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+.WbTextNum {
+    position: absolute;
+    right: 28px;
+    bottom: 28px;
+    color: #000;
+}
+
+#vList {
+    position: relative;
+    padding-top: 48px;
+    background: #fff;
+    width: 100%;
+    height: 338px;
+}
+
+.videoList {
+    position: relative;
+    width: 90%;
+    height: 340px;
+    margin: 0 auto;
+
+}
+
+.itemM {
+
+    overflow: scroll;
+    height: 338px;
+}
+
+.userItem {
+    position: relative;
+    float: left;
+    width: 32%;
+    /*height: 88px;*/
+    padding: 1px;
+    cursor: pointer;
+}
+
+.userImg {
+    width: 100%;
+    /*height: 88px;*/
+    overflow: hidden;
+    border-radius: 30px;
+}
+
+.userImg img {
+    width: 100%;
+}
+
+.userCheck {
+    position: absolute;
+    right: 4px;
+    top: 4px;
+    z-index: 3;
+    width: 25px;
+    height: 25px;
+
+    background: url("../img/shareCheck.png") no-repeat;
+}
+
+.userChecked {
+
+    background: url("../img/shareChecked.png") no-repeat;
+
+}
+
+.info_scroller {
+    position: absolute;
+    right: 20px;
+    top: 48px;
+    width: 4px;
+    height: 330px;
+    background: #e2e2e2;
+}
+
+.info_scroll_bar {
+    position: absolute;
+    left: -2px;
+    top: 0;
+    width: 8px;
+    height: 40px;
+    background: url("../img/shareScroll.png") no-repeat;
+}
+
+.sinaPop_bot {
+    height: 87px;
+    text-align: center;
+    line-height: 120px;
+}
+
+.sharePopBtn {
+    cursor: pointer;
+}
+
+.bSubmit, .sinaPopUserList {
+    display: none;
+}
+
+.w_100 {
+    width: 100%;
+}
+
+#mobileTip {
+    position: absolute;
+
+    top: 0;
+
+    bottom: 0;
+
+    z-index: 2;
+
+    margin: auto 10px;
+    display: none;
+
+}
+
+.rotationTip {
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.rotationTip img {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    position: absolute;
+}

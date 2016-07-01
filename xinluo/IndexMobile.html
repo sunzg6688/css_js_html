@@ -1,0 +1,583 @@
+﻿<!DOCTYPE html>
+<html>
+<head lang="en">
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width,initial-scale=1, maximum-scale=1, user-scalable=no"/>
+<title></title>
+<style>
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    font-family: 'SamsungIFRg', 'Microsoft YaHei', AppleGothic, sans-serif;
+}
+
+.content {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.logo {
+    width: 100%;
+}
+
+#video_div {
+    width: 76%;
+    margin: 0 auto;
+    border: solid #ffa8b8 3px;
+    line-height: 0;
+}
+
+#video_div video {
+    width: 100%;
+}
+
+.bg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.feed {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+}
+
+.video_btns {
+    width: 50%;
+    margin: 10px auto;
+}
+
+.video_btns img {
+    width: 40%;
+    margin: 4%;
+}
+
+.go_btns {
+    width: 94%;
+    margin: 0 auto;
+}
+
+.go {
+    width: 38.2%;
+    float: left;
+}
+
+.go img {
+    width: 100%;
+}
+
+.vs {
+    width: 23.3%;
+    float: left;
+}
+
+.vs img {
+    width: 100%;
+    display: block;
+}
+
+.sinaPopUserList {
+    position: absolute;
+    top: 50%;
+    /*left: 50%;*/
+    z-index: 10;
+    /*width: 484px;*/
+    /*margin-left: -242px;*/
+    margin-top: -287px;
+    width: 100%;
+}
+
+.sinaPop_t {
+    position: relative;
+    z-index: 3;
+    width: 90%;
+    margin: 0 auto;
+    /*margin-bottom: -28px;*/
+    /*padding-left: 12px;*/
+}
+
+.sinaPop_cont {
+    position: relative;
+    border: 3px solid #191919;
+    background: #191919;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.popClose {
+    position: absolute;
+    right: 10px;
+    top: 11px;
+    z-index: 3;
+    width: 26px;
+    height: 26px;
+    background: url('Content/img/sharePopClose.png') no-repeat;
+    cursor: pointer;
+}
+
+.shareText {
+    position: relative;
+    padding: 48px 18px 16px;
+    background: #fff;
+}
+
+.shareText textarea {
+    /*width: 422px;*/
+    /*height: 114px;*/
+    /*padding: 5px 10px;*/
+    /*border: none;*/
+    /*background: #ececec;*/
+    /*border-radius: 10px;*/
+    /*font-size: 16px;*/
+    width: 100%;
+    height: 114px;
+    border: none;
+    background: #ececec;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+.WbTextNum {
+    position: absolute;
+    right: 28px;
+    bottom: 28px;
+    color: #000;
+}
+
+#vList {
+    position: relative;
+    padding-top: 48px;
+    background: #fff;
+    width: 100%;
+    height: 338px;
+}
+
+.videoList {
+    position: relative;
+    width: 90%;
+    height: 340px;
+    margin: 0 auto;
+}
+
+.itemM {
+    overflow: scroll;
+    height: 338px;
+}
+
+.userItem {
+    position: relative;
+    float: left;
+    width: 32%;
+    /*height: 88px;*/
+    padding: 1px;
+    cursor: pointer;
+}
+
+.userImg {
+    width: 100%;
+    /*height: 88px;*/
+    overflow: hidden;
+    border-radius: 30px;
+}
+
+.userImg img {
+    width: 100%;
+}
+
+.userCheck {
+    position: absolute;
+    right: 4px;
+    top: 4px;
+    z-index: 3;
+    width: 25px;
+    height: 25px;
+    background: url('Content/img/shareCheck.png') no-repeat;
+}
+
+.userChecked {
+    background: url('Content/img/shareChecked.png') no-repeat;
+}
+
+.info_scroller {
+    position: absolute;
+    right: 20px;
+    top: 48px;
+    width: 4px;
+    height: 330px;
+    background: #e2e2e2;
+}
+
+.info_scroll_bar {
+    position: absolute;
+    left: -2px;
+    top: 0;
+    width: 8px;
+    height: 40px;
+    background: url(Content/img/shareScroll.png) no-repeat;
+}
+
+.sinaPop_bot {
+    height: 87px;
+    text-align: center;
+    line-height: 120px;
+}
+
+.sharePopBtn {
+    cursor: pointer;
+}
+
+.bSubmit, .sinaPopUserList {
+    display: none;
+}
+
+.w_100 {
+    width: 100%;
+}
+
+.share_pop {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    display: none;
+}
+
+.bg_color {
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    opacity: 0.5;
+}
+
+.alert {
+    width: 280px;
+    height: 219px;
+    margin: auto;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    position: fixed;
+    z-index: 9;
+    background: url("Content/img/lq_bg.png") no-repeat;
+    background-size: 100%;
+    display: none;
+}
+
+#txt {
+    width: 100%;
+    display: block;
+    line-height: 30px;
+    font-size: 20px;
+    text-align: center;
+    margin-top: 70px;
+
+}
+
+.alert img {
+    display: block;
+    margin: 15px auto;
+}
+
+.close_btn {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0;
+}
+</style>
+</head>
+<body>
+<div class="content">
+
+    <img class="bg" src="Content/img/m_index_bg.jpg">
+
+    <div class="feed">
+        <img class="logo" src="Content/img/m_title.png">
+
+        <div id="video_div">
+            <video id="m_video" poster="Content/img/m_video_bg.jpg" controls="controls" autoplay
+                   src="Content/movie/haekyo.mp4"></video>
+        </div>
+        <div class="video_btns">
+            <img onclick="lookVideo('s')" src="Content/img/m_s_video_btn.png">
+            <img onclick="lookVideo('l')" src="Content/img/m_l_video_btn.png">
+        </div>
+        <div class="go_btns">
+            <div class="go">
+                <a href="SonghuiqiaoMobile.html"><img
+                        onclick="LinkClick('cn:shilladfs_gxj_20160628:click_followhuiqiao','o')"
+                        src="Content/img/m_s_go_btn.png"></a>
+            </div>
+            <div class="vs">
+                <div>
+                    <img src="Content/img/m_vs_desc.png">
+                </div>
+                <div class="shareBtn">
+                    <img onclick="LinkClick('cn:shilladfs_gxj_20160628:click_shareweibo','o')"
+                         src="Content/img/m_weibo_share_btn.png">
+                </div>
+            </div>
+            <div class="go">
+                <a href="LiguangzhuMobile.html"><img
+                        onclick="LinkClick('cn:shilladfs_gxj_20160628:click_followguangzhu','o')"
+                        src="Content/img/m_l_go_btn.png"></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="alert">
+        <div onclick="closeAlert()" class="close_btn"></div>
+        <span id="txt">CN MALL ID完成应募。</span><br>
+        <a><img onclick="closeAlert()" src="Content/img/sure_btn.png"></a>
+    </div>
+
+    <div class="share_pop">
+        <div class="bg_color"></div>
+        <div class="sinaPopUserList">
+            <div class="sinaPop_t"><img class="w_100" src="Content/img/shareTitle.png"></div>
+            <div class="sinaPop_cont">
+                <div class="popClose"></div>
+                <div class="shareText">
+                    <div class="WbTextNum">140</div>
+                    <textarea id="weiboContent">#新罗购享家#还有什么比加入新罗购享家更划算的事？让你分分钟不用踏出家门就得往返双人韩国机票！更有新罗酒店、日默瓦旅行箱等fashion好礼等你带走。每天话费领取惊喜连连。立即加入新罗购享家，开启你的梦幻韩国购物之旅！http://t.cn/R5YslAe </textarea>
+                </div>
+                <div id="vList" style="display: none;">
+                    <div id="vList_container" class="videoList">
+                        <div id="vList_shower" class="itemM">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="sinaPop_bot">
+                    <span class="sharePopBtn bNext"><img src="Content/img/bNext.png"></span>
+                    <span class="sharePopBtn bSubmit"><img src="Content/img/sharePopBtn.png"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript" src="Content/js/jquery-1.8.3.min.js"></script>
+<script>
+    $(function () {
+        var userState;
+        $.post('@Url.Action("GetUserState","Home")', null, function (d) {
+            userState = d;
+            console.dir(d);
+            if (d.authorized) {
+                $('#vList_shower').empty();
+                $.each(d.data.Users, function (index, obj) {
+                    if (index > 39) return;
+                    $('#vList_shower').append('<div class="userItem"><input type="checkbox" name="friendName" value="' + obj.Screen_name + '" style="display:none;" /><div class="userCheck"></div><div class="userImg"><img src="' + obj.Profile_image_url + '"></div></div>');
+                });
+                $(".userItem").on("click", function () {
+                    if (!$(this).find("input[name=friendName]").prop("checked"))
+                        $(this).find("input[name=friendName]").prop("checked", true);
+                    else
+                        $(this).find("input[name=friendName]").prop("checked", false);
+                    $(this).find(".userCheck").toggleClass("userChecked")
+                })
+            }
+        });
+
+        if ('@Request.QueryString["showPopUp"]') {
+            shareRest()
+            $(".sinaPopUserList").show()
+        }
+
+        function shareRest() {
+            $(".shareText,.bNext").show()
+            $("#vList,.bSubmit").hide()
+        }
+
+        // 新浪分享按钮
+        $(".shareBtn").click(function () {
+            if (!userState.authorized) {
+                window.location.href = userState.url;
+                return;
+            }
+
+            shareRest()
+            $(".sinaPopUserList").show();
+
+            $(".share_pop").show();
+
+        })
+
+        // popClose
+        $(".popClose").click(function () {
+
+            $(".sinaPopUserList").hide();
+
+            $(".share_pop").hide();
+        })
+
+        // 好友列表选中操作
+        $(".userItem").on("click", function () {
+            if (!$(this).find("input[name=friendName]").prop("checked"))
+                $(this).find("input[name=friendName]").prop("checked", true);
+            else
+                $(this).find("input[name=friendName]").prop("checked", false);
+            $(this).find(".userCheck").toggleClass("userChecked")
+        })
+
+        //文字分享提交
+
+        $(".bNext").click(function () {
+            if (userState.data.Users.length < 1) {
+                var data = {
+                    content: $('#weiboContent').val()
+                };
+                publish(data);
+                return;
+            }
+
+            $(this).hide()
+            $(".shareText").hide()
+            $(".bSubmit,#vList").show()
+        })
+        StopTxt($(".shareText textarea"), 140, $(".WbTextNum"))
+        $(document).on("keyup keydown", ".shareText textarea", function () {
+            StopTxt($(this), 150, $(".WbTextNum"))
+        })
+        // 分享文字个数判断
+        function StopTxt(th, nums, th1) {
+            var curLength = th.val().length;
+            if (curLength > nums) {
+                var num = th.val().substr(0, nums);
+                th.val(num);
+                $(th1).text(0);
+            }
+            else {
+                $(th1).text(nums - th.val().length);
+            }
+        }
+
+
+        // 分享提交
+        $('.bSubmit').click(function () {
+            var array = [];
+            $('input[name=friendName]:checked').each(function () {
+                array.push($(this).val());
+            });
+
+            if (1 > array.length) {
+                alert("必须选择至少1人");
+                return;
+            }
+
+            var data = {
+                content: $('#weiboContent').val(),
+                names: array
+            };
+            publish(data);
+
+            $(".sinaPopUserList").hide();
+
+            $(".share_pop").hide();
+        });
+
+        function publish(data) {
+            $.ajax({
+                url: '@Url.Action("PublishWeibo","Activity")',
+                type: 'post',
+                traditional: true,
+                data: data,
+                dataType: 'json',
+                success: function (d) {
+                    alert(d.explain);
+                }
+            });
+        }
+    });
+
+
+</script>
+
+<script>
+
+    var b_w = document.documentElement.clientWidth;
+
+    var psdScale = b_w / 640;
+
+    var sh = 1080 * psdScale;
+
+    if (sh < document.documentElement.clientHeight) {
+
+        sh = document.documentElement.clientHeight;
+    }
+
+    $(".content").height(sh);
+
+
+    function lookVideo(name) {
+
+        if (name == "s") {
+
+            document.getElementById("m_video").src = '/Content/movie/haekyo.mp4';
+
+            document.getElementById("video_div").style.borderColor = "#ffa8b8";
+
+            LinkClick('cn:shilladfs_gxj_20160628:tab_huiqiao', 'o');
+
+
+        } else {
+
+            document.getElementById("m_video").src = 'Content/movie/kwangsu.mp4';
+
+            document.getElementById("video_div").style.borderColor = "#85cfff";
+
+            LinkClick('cn:shilladfs_gxj_20160628:tab_guangzhu', 'o');
+        }
+    }
+
+    window.alert = function (txt) {
+
+        $("#txt").html(txt);
+
+        $(".alert").show();
+    }
+
+    function closeAlert() {
+
+        $(".alert").hide();
+
+    }
+
+</script>
+</body>
+</html>
+
+<!-- SiteCatalyst code version: H.24.Copyright 1997-2008 Omniture, Inc. More info available at http://www.omniture.com -->
+<script language="JavaScript" type="text/javascript" src="/event/js/s_code_microsite_p4.js"></script>
+<script language="JavaScript" type="text/javascript"><!--
+s.pageName = "cn:campaign:event:shilladfs_gxj_20160628:homepage"
+s.hier1 = "cn>campaign>event>shilladfs_gxj_20160628>homepage"
+s.channel = "cn:campaign"
+s.prop1 = "cn"
+s.prop2 = "cn:campaign"
+s.prop3 = "cn:campaign:event"
+s.prop4 = "cn:campaign:event:shilladfs_gxj_20160628"
+
+/************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
+var s_code = s.t();
+if (s_code)document.write(s_code)//--></script>
+<script language="JavaScript" type="text/javascript"><!--
+if (navigator.appVersion.indexOf('MSIE') >= 0)document.write(unescape('%3C') + '\!-' + '-')
+//--></script>
+<noscript><a href="http://www.omniture.com" title="Web Analytics"><img
+        src="http://nmetrics.samsung.com/b/ss/sssamsung4cn,sssamsung4mstglobal/1/H.25.5--NS/0"
+        height="1" width="1" border="0" alt=""/></a></noscript><!--/DO NOT REMOVE/-->
+<!-- End SiteCatalyst code version: H.25.5. -->
