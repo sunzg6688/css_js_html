@@ -2,7 +2,7 @@
  * Created by sunzg on 16/8/5.
  */
 //非常重要缓存已经调用过的模版
-var templates={};
+var templates = {};
 
 function Template(container, tmpl, data, callBack) {
 
@@ -18,13 +18,13 @@ function Template(container, tmpl, data, callBack) {
 
     function parse() {
 
-        if(templates[tmpl]){
+        if (templates[tmpl]) {
 
             updateTmplData(templates[tmpl]["tmplTxtArr"]);
 
             document.getElementById(container).innerHTML = innerHTML;
 
-        }else{
+        } else {
 
             parseTmpl();
 
@@ -70,7 +70,7 @@ function Template(container, tmpl, data, callBack) {
             }
         }
 
-        templates[tmpl]={"tmplTxtArr":tmplTxtArr};
+        templates[tmpl] = {"tmplTxtArr": tmplTxtArr};
     };
 
     function updateTmplData(tmplTxtArr) {
@@ -98,5 +98,6 @@ function Template(container, tmpl, data, callBack) {
 
     parse();
 
-    if (callBack)callBack();
+    //此处异步执行是为了保证回调函数在调用执行时，插入的模版数据已经存在dom树中，浏览器已经成功渲染。
+    if (callBack)setTimeout(callBack);
 }

@@ -4,26 +4,30 @@
     <meta charset="UTF-8">
     <title>史上最简单，最好用，最简洁的数据模版</title>
     <style>
-        html,body{
+        html, body {
             margin: 0;
             padding: 0;
         }
-        .content{
+
+        .content {
             width: 80%;
             margin: 30px auto;
         }
-        .intro{
+
+        .intro {
             color: #555555;
             line-height: 30px;
             font-size: 18px;
             margin-bottom: 30px;
         }
-        .user{
+
+        .user {
             margin-top: 20px;
             background-color: #eeeeee;
             padding: 10px;
             position: relative;
         }
+
         .name {
             font-size: 20px;
             color: #ff0000;
@@ -38,7 +42,7 @@
 
         }
 
-        .sex2{
+        .sex2 {
             color: #ff0000;
         }
 
@@ -55,7 +59,7 @@
             line-height: 20px;
         }
 
-        .userImg{
+        .userImg {
             width: 150px;
             position: absolute;
             right: 50px;
@@ -70,11 +74,11 @@
     <div class="intro">
         1.模版使用超级简单，只需要在任何需要赋值的地方使用 {{}} 即可。<br>
         2.功能异常强大,可以在任何地方，给任意属性赋值：<br>
-         (1)例如给原生自带的id属性赋值。<br>
-         (2)例如在class属性中赋值<br>
-         (2)例如给你的自定义属性user-name赋值。<br>
-         (3)例如在点击事件onclick中赋值。<br>
-         (4)任意位置！！！<br>
+        (1)例如给原生自带的id属性赋值。<br>
+        (2)例如在class属性中赋值<br>
+        (2)例如给你的自定义属性user-name赋值。<br>
+        (3)例如在点击事件onclick中赋值。<br>
+        (4)任意位置！！！<br>
         3.支持模版数据渲染成功后回调函数。<br>
         4.支持与任意框架，组件的轻量化集成。<br>
         5.相比于jquery或者其他框架的模版实现，上手简单，代码轻量，且效率高到爆！！！<br>
@@ -102,24 +106,24 @@
 <script>
 
     users = [
-        {"id": 1, "name": "tom", "sex": "男", "age": 12,"imgUrl":"image/item_1.jpg","sexClass":"sex2", "info": "11tom11tom11tom11tom11tom","link":"http://www.sklube.com.cn/index.html"},
-        {"id": 2, "name": "jhon", "sex": "男", "age": 13,"imgUrl":"image/item_2.jpg", "info": "22jhonjhonjhonjhonjhon","link":"http://www.sklube.com.cn/index.html#!feed=1#!feedNavIndex=0"},
-        {"id": 3, "name": "lily", "sex": "女", "age": 14,"imgUrl":"image/item_3.jpg", "info": "33lilylilylilylilylilylily","link":"http://www.sklube.com.cn/index.html#!feed=6"}
+        {"id": 1, "name": "tom", "sex": "男", "age": 12, "imgUrl": "image/item_1.jpg", "sexClass": "sex2", "info": "11tom11tom11tom11tom11tom", "link": "http://www.sklube.com.cn/index.html"},
+        {"id": 2, "name": "jhon", "sex": "男", "age": 13, "imgUrl": "image/item_2.jpg", "info": "22jhonjhonjhonjhonjhon", "link": "http://www.sklube.com.cn/index.html#!feed=1#!feedNavIndex=0"},
+        {"id": 3, "name": "lily", "sex": "女", "age": 14, "imgUrl": "image/item_3.jpg", "info": "33lilylilylilylilylilylily", "link": "http://www.sklube.com.cn/index.html#!feed=6"}
     ];
 
     //参数分别为模版容器，模版id，模版数据，回调函数(可缺省)
-    Template("userList", "user", users,addListener);
+    Template("userList", "user", users, addListener);
 
-    function addListener(){
+    function addListener() {
 
-        var user1=document.getElementById("user_1");
+        var user1 = document.getElementById("user_1");
 
-        console.log("更新模版数据后，执行回调函数：",user1);
+        console.log("更新模版数据后，执行回调函数：", user1);
     }
 
-    function showID(id){
+    function showID(id) {
 
-        alert("用户："+id);
+        alert("用户：" + id);
     }
 
 </script>
