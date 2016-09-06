@@ -12,6 +12,18 @@
 <div>省份：<select id="province"></select></div>
 <div>城市：<select id="city"></select></div>
 <div>地区：<select id="area"></select></div>
+<input id="field" type="text" />
 </body>
 
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#field").change(function(){
+            var s=$("#field").val();
+            var reg = new RegExp("^[0-9]*$");
+            if(!reg.test(s)){
+                alert("请输入数字");
+            }
+        });
+    });
+</script>
 </html>
