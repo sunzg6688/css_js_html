@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>滚动加载</title>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <style>
+        html, body {
+            padding: 0;
+            margin: 0;
+            width: 100%;
+        }
+        .header,.footer{
+            width: 100%;
+            line-height: 50px;
+            height: 50px;
+            text-align: center;
+        }
+        #list div{
+            height: 100px;
+            line-height: 100px;
+        }
+    </style>
+</head>
+<body>
+<div class="header">这个头部标题</div>
+<div id="list">
+    <div>生成的item 0</div>
+    <div>生成的item 1</div>
+    <div>生成的item 2</div>
+    <div>生成的item 3</div>
+    <div>生成的item 4</div>
+    <div>生成的item 5</div>
+</div>
+<div class="footer">这个底部footer</div>
+</body>
+<script>
+
+    function eid(id){
+
+        return document.getElementById(id);
+    }
+
+    window.addEventListener("scroll", scrollHandler, false);
+
+    var offsetBottom = -10;
+
+    function scrollHandler() {
+
+        var rect = eid("list").getBoundingClientRect();
+
+        var screenHeight = document.documentElement.clientHeight || window.innerHeight;
+
+//        console.log(rect.bottom,screenHeight,rect.bottom - screenHeight);
+
+        if (rect.bottom - screenHeight <= offsetBottom) {
+
+            createNewItem();
+        }
+
+    }
+
+    var itemNum=5;
+
+    function createNewItem(){
+
+        if(itemNum>=50)return;
+
+        for(var i=0;i<2;i++){
+
+            itemNum++;
+
+            var div = document.createElement("div");
+
+            div.innerHTML = "请求后台新的数据生成的item"+itemNum;
+
+            eid("list").appendChild(div);
+        }
+    }
+</script>
+</html>
